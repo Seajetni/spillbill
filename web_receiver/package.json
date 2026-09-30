@@ -1,8 +1,8 @@
 {
-  "name": "web_receiver",
+  "name": "spillbill",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "SplitBill Zero-Install Web Receiver and Nudge API",
+  "main": "api/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
