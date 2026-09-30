@@ -1,19 +1,23 @@
-name: iOS Build Check & Artifact
+name: Build Mobile Apps (iOS .ipa & Android .apk)
 
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  build-ios:
-    name: Build Flutter iOS
+  build:
+    name: Build iOS IPA & Android APK
     runs-on: macos-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -27,19 +31,29 @@ jobs:
       - name: Analyze Project
         run: flutter analyze
 
-      - name: Run Unit & Integration Tests
+      - name: Run Tests
         run: flutter test
 
-      - name: Build iOS Application (Release, No Codesign)
+      - name: Build iOS Application (.app)
         run: flutter build ios --release --no-codesign
 
-      - name: Package Runner.app
+      - name: Package SplitBill.ipa for iPhone Sideloading
         run: |
-          cd build/ios/iphoneos
-          zip -r Runner.app.zip Runner.app
+          mkdir -p Payload
+          cp -r build/ios/iphoneos/Runner.app Payload/
+          zip -r SplitBill.ipa Payload
 
-      - name: Upload iOS Build Artifact
+      - name: Build Android APK
+        run: flutter build apk --release
+
+      - name: Upload SplitBill.ipa (for iPhone)
         uses: actions/upload-artifact@v4
         with:
-          name: splitbill-ios-app
-          path: build/ios/iphoneos/Runner.app.zip
+          name: SplitBill-iOS-IPA
+          path: SplitBill.ipa
+
+      - name: Upload SplitBill.apk (for Android)
+        uses: actions/upload-artifact@v4
+        with:
+          name: SplitBill-Android-APK
+          path: build/app/outputs/flutter-apk/app-release.apk
