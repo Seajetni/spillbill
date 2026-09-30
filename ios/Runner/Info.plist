@@ -72,12 +72,17 @@
 		<string>scbeasy</string>
 		<string>kma</string>
 		<string>ttbtouch</string>
+		<string>ktbnext</string>
 	</array>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>SplitBill ขออนุญาตบันทึกรูป QR Code สำหรับชำระเงินลงในคลังภาพของคุณ</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>SplitBill ขออนุญาตเข้าถึงคลังภาพเพื่อแนบสลิปการโอนเงิน</string>
+	<key>NSCameraUsageDescription</key>
+	<string>SplitBill ขออนุญาตเข้าถึงกล้องเพื่อถ่ายภาพสลิปการโอนเงิน</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>SplitBill ขออนุญาตเข้าถึงไมโครโฟนเพื่อบันทึกข้อความเสียงทวงหนี้</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>

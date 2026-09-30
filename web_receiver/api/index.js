@@ -62,6 +62,107 @@ app.get('/', async (req, res) => {
         <p class="text-xs text-slate-400">
           เมื่อผู้ใช้ส่งเสียงทวง ลิงก์สำหรับผู้รับจะอยู่ที่ <code>/n/:nudgeId</code>
         </p>
+        <div class="mt-6 pt-4 border-t border-slate-100 flex justify-center gap-4 text-xs text-blue-600">
+          <a href="/privacy" class="hover:underline">Privacy Policy</a>
+          <span>·</span>
+          <a href="/support" class="hover:underline">Support</a>
+        </div>
+      </div>
+    </body>
+    </html>
+  `);
+});
+
+// Privacy Policy (Apple App Store Guideline 5.1.1 compliant)
+app.get('/privacy', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="th">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>นโยบายความเป็นส่วนตัว (Privacy Policy) - SplitBill</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+      <style>body { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }</style>
+    </head>
+    <body class="bg-slate-50 text-slate-800 p-6 md:p-12 max-w-3xl mx-auto">
+      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-slate-100">
+        <h1 class="text-2xl font-bold mb-2">นโยบายความเป็นส่วนตัว (Privacy Policy)</h1>
+        <p class="text-sm text-slate-500 mb-8">มีผลบังคับใช้ตั้งแต่วันที่ 1 ตุลาคม 2569 | SplitBill Application</p>
+
+        <section class="space-y-6 text-sm leading-relaxed text-slate-600">
+          <div>
+            <h2 class="text-base font-bold text-slate-900 mb-1">1. ข้อมูลที่เราจัดเก็บและการใช้งาน</h2>
+            <p>แอปพลิเคชัน <strong>SplitBill</strong> จัดเก็บและประมวลผลข้อมูลที่จำเป็นต่อการคำนวณและหารบิลเท่านั้น ได้แก่ ข้อมูลรายการบิล ยอดเงิน ชื่อสมาชิกในกลุ่ม และคลิปเสียงทวงหนี้ที่ผู้ใช้บันทึก</p>
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-slate-900 mb-1">2. การเข้าถึงอุปกรณ์ (Device Permissions)</h2>
+            <ul class="list-disc pl-5 space-y-1">
+              <li><strong>ไมโครโฟน (Microphone):</strong> ใช้เพื่อบันทึกเสียงข้อความทวงหนี้ (Voice Nudge) ตามความสมัครใจของผู้ใช้</li>
+              <li><strong>คลังรูปภาพและกล้อง (Photos & Camera):</strong> ใช้เพื่อบันทึกภาพ PromptPay QR Code และแนบรูปสลิปหลักฐานการโอนเงิน</li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-slate-900 mb-1">3. ความปลอดภัยและการแชร์ข้อมูล</h2>
+            <p>เราไม่จำหน่ายหรือเปิดเผยข้อมูลส่วนบุคคลของผู้ใช้ให้กับบุคคลภายนอก ลิงก์สำหรับผู้รับถูกสร้างขึ้นเพื่อให้เพื่อนสามารถเปิดดูยอดและชำระเงินได้ผ่านเบราว์เซอร์เท่านั้น</p>
+          </div>
+          <div>
+            <h2 class="text-base font-bold text-slate-900 mb-1">4. การติดต่อผู้พัฒนา</h2>
+            <p>หากมีข้อสงสัยเกี่ยวกับนโยบายความเป็นส่วนตัว สามารถติดต่อได้ที่อีเมล: <a href="mailto:boywinterfull@gmail.com" class="text-blue-600 underline">boywinterfull@gmail.com</a></p>
+          </div>
+        </section>
+        
+        <div class="mt-8 pt-6 border-t border-slate-100 text-xs text-slate-400">
+          <a href="/" class="text-blue-600 hover:underline">← กลับหน้าหลัก</a>
+        </div>
+      </div>
+    </body>
+    </html>
+  `);
+});
+
+// Support URL (Apple App Store Guideline 1.5 compliant)
+app.get('/support', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="th">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>ฝ่ายสนับสนุนผู้ใช้ (Customer Support) - SplitBill</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+      <style>body { font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif; }</style>
+    </head>
+    <body class="bg-slate-50 text-slate-800 p-6 md:p-12 max-w-2xl mx-auto">
+      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-slate-100 text-center">
+        <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+          ?
+        </div>
+        <h1 class="text-2xl font-bold mb-2">ศูนย์ช่วยเหลือ SplitBill</h1>
+        <p class="text-sm text-slate-500 mb-8">พบปัญหาการใช้งาน มีข้อเสนอแนะ หรือต้องการความช่วยเหลือ ติดต่อเราได้ทันที</p>
+
+        <div class="bg-slate-50 rounded-2xl p-6 text-left border border-slate-100 space-y-4 text-sm mb-6">
+          <div class="flex items-center gap-3">
+            <span class="text-xl">📧</span>
+            <div>
+              <div class="text-xs text-slate-400 font-medium">อีเมลฝ่ายช่วยเหลือ (Support Email)</div>
+              <a href="mailto:boywinterfull@gmail.com" class="font-bold text-blue-600 hover:underline">boywinterfull@gmail.com</a>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xl">⏱️</span>
+            <div>
+              <div class="text-xs text-slate-400 font-medium">เวลาทำการ</div>
+              <div class="font-medium text-slate-700">จันทร์ - ศุกร์: 09:00 - 18:00 น. (GMT+7)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-xs text-slate-400">
+          <a href="/" class="text-blue-600 hover:underline">← กลับหน้าหลัก</a> · <a href="/privacy" class="text-blue-600 hover:underline">นโยบายความเป็นส่วนตัว</a>
+        </div>
       </div>
     </body>
     </html>
