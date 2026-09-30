@@ -57,9 +57,8 @@
 * [ ] **ระบบระบุตัวตนและยืนยันตัวตน (Authentication)**
   * ปัจจุบันผู้ใช้ทุกคนเป็น `m_pop` อัตโนมัติ ขาดระบบ Sign Up / Sign In
   * *ข้อกำหนด Apple*: หากมีระบบบัญชี ต้องรองรับ **Sign in with Apple** (Guideline 4.8) และมี **ปุ่มลบบัญชี (Account Deletion)** ในแอป (Guideline 5.1.1(v))
-* [ ] **ระบบฐานข้อมูล Cloud Database (Real-time Sync) [เลือกใช้ Vercel + MongoDB Atlas]**
-  * โครงสร้างข้อมูลบิลและเสียงทวงหนี้จะจัดเก็บบน **MongoDB Atlas** (Free Tier 512MB M0 Cluster) เชื่อมโยงผ่าน Serverless API บน **Vercel**
-  * จัดเก็บข้อมูลผู้ใช้, รายการบิล, สถิติ, ประวัติการชำระเงิน และลิงก์/Base64 คลิปเสียงทวงหนี้ (Voice Nudge)
+* [x] **ระบบฐานข้อมูล Cloud Database (Real-time Sync) [เลือกใช้ Vercel + MongoDB Atlas]**
+  * จัดเก็บบน **MongoDB Atlas** (คลัสเตอร์ aquasmartguard) เชื่อมโยงผ่าน Serverless API บน **Vercel** (`https://spillbill.vercel.app/api/nudge`) ใช้งานได้จริงแล้ว
 * [ ] **ระบบ Push Notification ข้ามเครื่อง (APNs / FCM)**
   * ใน `lib/screens/notifications_sheet.dart` เป็นเพียง `simulateIncomingNotification()` ใส่ในเครื่องตัวเอง
   * ต้องติดตั้ง Apple Push Notification service (APNs) ผ่าน Firebase Cloud Messaging เพื่อส่งแจ้งเตือนเข้ามือถือเพื่อนเมื่อมีบิลใหม่หรือมียอดชำระ
@@ -67,9 +66,9 @@
 ---
 
 ### 5. ระบบหน้าเว็บสำหรับเพื่อน (Zero-Install Web Landing) [สถาปัตยกรรม Vercel + MongoDB]
-* [ ] **พัฒนา Web Application จริงบน Vercel (Next.js / Serverless)**
-  * พัฒนาหน้าเว็บ Zero-Install โฮสต์บน **Vercel** เชื่อมต่อฐานข้อมูล **MongoDB Atlas**
-  * รูปแบบ URL: `https://splitbill.vercel.app/n/:nudgeId` เพื่อให้เพื่อนที่ไม่มีแอปสามารถเปิดผ่านเบราว์เซอร์ใน LINE / Safari / Chrome เพื่อฟังเสียงทวง, ตรวจสอบยอด, สแกน QR PromptPay และกดแจ้งโอนเงินได้ทันที
+* [x] **พัฒนา Web Application จริงบน Vercel (Express Serverless)**
+  * พัฒนาหน้าเว็บ Zero-Install โฮสต์บน **Vercel** (`https://spillbill.vercel.app`) เชื่อมต่อฐานข้อมูล **MongoDB Atlas**
+  * รูปแบบ URL: `https://spillbill.vercel.app/n/:nudgeId` เปิดฟังเสียงทวง, สแกน QR PromptPay, เปิด Deep Link K PLUS/SCB/Krungthai และกดส่ง Quick Reply ได้ทันที
 * [x] **ระบบแชร์ลิงก์และไฟล์เสียงด้วย Native Share Sheet**
   * เชื่อมต่อ package `share_plus` ใน [voice_nudge_share_modal.dart](file:///D:/code/split_bill/lib/widgets/voice_nudge_share_modal.dart) สามารถแชร์ข้อความสรุปยอด, เลขพร้อมเพย์, ลิงก์ และ**แนบไฟล์เสียงจริง (.m4a / .mp3)** ส่งตรงเข้าแชท LINE หรือโซเชียลมีเดียได้ทันที พร้อมปุ่มเปิดดูตัวอย่างหน้าจอฝั่งเพื่อน (Receiver Preview)
 
@@ -119,20 +118,23 @@
 
 ### ☁️ ระยะที่ 3: สถาปัตยกรรมคลาวด์และระบบ Multi-User (Cloud Sync & Backend - Vercel + MongoDB Atlas)
 > จำเป็นสำหรับให้เพื่อนใช้จริงข้ามเครื่อง และเป็นเงื่อนไขสำคัญในการส่งขึ้น App Store
-* [ ] **Cloud Database & Web Landing (Vercel + MongoDB Atlas)**:
-  * จัดเก็บข้อมูลบิล, การทวงหนี้ (Voice Nudge) และสถิติบน MongoDB Atlas ผ่าน Vercel Serverless Function
-  * พัฒนาหน้าเว็บ Zero-Install Receiver บน Vercel ให้เพื่อนเปิดฟังเสียงและชำระ PromptPay ได้จากเบราว์เซอร์
+* [x] **Cloud Database & Web Landing (Vercel + MongoDB Atlas)**:
+  * จัดเก็บข้อมูลบิล, การทวงหนี้ (Voice Nudge) บน MongoDB Atlas (Cluster aquasmartguard) ผ่าน Vercel Serverless Function สำเร็จ
+  * พัฒนาหน้าเว็บ Zero-Install Receiver บน Vercel (`https://spillbill.vercel.app/n/:id`) เปิดฟังเสียงและชำระ PromptPay ได้จากเบราว์เซอร์
 * [ ] **ระบบ Authentication**:
   * ทำระบบ Sign in with Apple (ตาม Apple Guideline 4.8) และปุ่มลบบัญชี (Account Deletion)
 * [ ] **ระบบ Debt Simplification Graph**:
   * พัฒนาอัลกอริทึมลดยอดหนี้ซ้ำซ้อนเพื่อให้โอนเงินน้อยครั้งที่สุด
 
 ### 🍎 ระยะที่ 4: ตรวจสอบความพร้อมและเตรียมขึ้น App Store (iOS Readiness)
+* [x] เพิ่มคำขอ Permission ใน `Info.plist` (กล้อง `NSCameraUsageDescription`, ไมโครโฟน `NSMicrophoneUsageDescription`, อัลบั้ม `NSPhotoLibraryUsageDescription` / `NSPhotoLibraryAddUsageDescription`)
+* [x] เพิ่ม `<key>ITSAppUsesNonExemptEncryption</key><false/>` ใน `ios/Runner/Info.plist`
+* [x] จัดทำ `ios/Podfile` กำหนด `platform :ios, '15.0'` และ build settings พร้อมคอมไพล์ CocoaPods
+* [x] จัดทำหน้าเว็บ **Privacy Policy** (`https://spillbill.vercel.app/privacy`) และ **Support URL** (`https://spillbill.vercel.app/support`) เปิดใช้งานจริงแล้ว
+* [x] ติดตั้ง **GitHub Actions CI/CD** (`.github/workflows/ios_build.yml`) ทดสอบคอมไพล์บน macOS runner และสร้าง Build Artifact สำหรับ iOS สำเร็จ 100%
 * [ ] จัดเตรียม Apple Developer Account ($99/ปี)
-* [ ] เปลี่ยน Bundle Identifier จาก Default ใน Xcode project
-* [ ] ออกแบบ App Icon (1024x1024 px ไม่มี Alpha)
-* [ ] เพิ่มคำขอ Permission ใน `Info.plist` (กล้อง, ไมโครโฟน, อัลบั้ม)
-* [ ] จัดทำหน้าเว็บ Privacy Policy & Support URL
+* [ ] เปลี่ยน Bundle Identifier จาก `com.splitbill.splitBill` ใน Xcode project เป็น Domain ของผู้พัฒนา
+* [ ] ออกแบบ App Icon (1024x1024 px ไม่มี Alpha) และรัน `flutter_launcher_icons`
 
 ---
 
