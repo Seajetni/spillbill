@@ -152,7 +152,21 @@
 
 ---
 
-## 🚀 คำสั่งเริ่มต้นรันโปรเจกต์ (Development)
+## 🚀 คำสั่งเริ่มต้นรันโปรเจกต์ (Development & Build)
+
+### 💻 Windows 1-Click Executable Installer (สร้างไฟล์ติดตั้ง .exe ในคลิกเดียว)
+
+สามารถสร้างไฟล์ตัวติดตั้ง `.exe` แบบ Standalone (ขนาดเพียง ~11.4 MB รวม Flutter Engine และ DLLs ครบถ้วน) ได้ง่ายๆ:
+
+1. **คอมไพล์ใน 1 คลิกผ่าน Batch Script**:
+   ```cmd
+   build_windows_exe.bat
+   ```
+2. **ผลลัพธ์ที่ได้**:
+   - `D:\code\split_bill\SplitBill_Setup.exe` (และในโฟลเดอร์ `dist/`)
+   - ดับเบิ้ลคลิกเพื่อติดตั้งและเปิดใช้งานแอปได้ทันทีใน 1 วินาที พร้อมสร้าง Desktop Shortcut อัตโนมัติ โดยไม่ต้องมีสิทธิ์ Administrator
+
+### 🛠️ Flutter Development Commands
 
 ```bash
 # ตรวจสอบการตั้งค่าและแพ็กเกจ
@@ -164,6 +178,6 @@ flutter pub get
 # ตรวจสอบความถูกต้องของโค้ด
 flutter analyze
 
-# รันแอปพลิเคชัน
-flutter run
+# รันแอปพลิเคชันบน Windows
+flutter run -d windows
 ```

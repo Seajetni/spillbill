@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitBill - Interactive Figma Design System & Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&family=Prompt:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --figma-bg: #1e1e1e;
+      --figma-panel: #2c2c2c;
+      --figma-border: #383838;
+      --figma-text: #ffffff;
+      --figma-muted: #8c8c8c;
+      --figma-blue: #0d99ff;
+      --primary: #2D6BFF;
+      --success: #0FBF7F;
+      --warn: #FF8A3D;
+      --danger: #E5484D;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Prompt', -apple-system, sans-serif;
+      background: var(--figma-bg);
+      color: var(--figma-text);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* Top Figma Bar */
+    header {
+      height: 48px;
+      background: var(--figma-panel);
+      border-bottom: 1px solid var(--figma-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 50;
+    }
+
+    .figma-tools {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tool-btn {
+      background: transparent;
+      border: none;
+      color: var(--figma-text);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Prompt', sans-serif;
+    }
+
+    .tool-btn:hover, .tool-btn.active {
+      background: #3e3e3e;
+    }
+
+    .tool-btn.primary {
+      background: var(--figma-blue);
+      font-weight: 600;
+    }
+    .tool-btn.primary:hover {
+      background: #007be5;
+    }
+
+    /* Main Workspace */
+    .workspace {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Left Sidebar: Layers & Pages */
+    .sidebar-left {
+      width: 250px;
+      background: var(--figma-panel);
+      border-right: 1px solid var(--figma-border);
+      display: flex;
+      flex-direction: column;
+      font-size: 13px;
+    }
+
+    .panel-header {
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--figma-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--figma-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .screen-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0;
+    }
+
+    .screen-item {
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      color: #e0e0e0;
+      transition: background 0.15s;
+    }
+
+    .screen-item:hover {
+      background: #383838;
+    }
+
+    .screen-item.active {
+      background: #0c8ce9;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .screen-icon {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    /* Infinite Canvas */
+    .canvas-viewport {
+      flex: 1;
+      background: #141414;
+      background-image: 
+        radial-gradient(circle, #2a2a2a 1px, transparent 1px);
+      background-size: 24px 24px;
+      overflow: auto;
+      position: relative;
+      cursor: grab;
+    }
+
+    .canvas-viewport:active {
+      cursor: grabbing;
+    }
+
+    .canvas-board {
+      display: grid;
+      grid-template-columns: repeat(4, 393px);
+      gap: 80px;
+      padding: 80px 100px;
+      transform-origin: 0 0;
+      transition: transform 0.1s ease-out;
+      width: max-content;
+    }
+
+    .artboard-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .artboard-label {
+      font-size: 13px;
+      color: #a0a0a0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px;
+      font-weight: 500;
+    }
+
+    .artboard-label span.num {
+      background: #333;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #0d99ff;
+    }
+
+    .artboard-card {
+      width: 393px;
+      height: 852px;
+      border-radius: 44px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      transition: all 0.2s ease;
+      position: relative;
+      background: #F5F7FA;
+    }
+
+    .artboard-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(13, 153, 255, 0.25);
+      outline: 2px solid var(--figma-blue);
+    }
+
+    .artboard-card iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      pointer-events: none;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 6px 10px;
+      background: #2a2a2a;
+      border: 1px solid #3e3e3e;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-family: 'Prompt', sans-serif;
+    }
+
+    .action-btn:hover {
+      background: #383838;
+      border-color: #0d99ff;
+    }
+
+    /* Right Sidebar: Inspect */
+    .sidebar-right {
+      width: 290px;
+      background: var(--figma-panel);
+      border-left: 1px solid var(--figma-border);
+      padding: 16px;
+      overflow-y: auto;
+      font-size: 12px;
+    }
+
+    .inspect-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .token-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid #383838;
+    }
+
+    .color-swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .code-box {
+      background: #181818;
+      border: 1px solid #333;
+      padding: 10px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #a5b4fc;
+      margin-top: 10px;
+      overflow-x: auto;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0d99ff;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      display: none;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Figma Menu -->
+  <header>
+    <div class="figma-tools">
+      <div style="font-weight: 800; font-size: 15px; color: #fff; display: flex; align-items: center; gap: 8px;">
+        <span style="color: #0d99ff;">❖</span> SplitBill System — Figma Canvas
+      </div>
+      <button class="tool-btn active">📐 Canvas</button>
+      <button class="tool-btn" onclick="toggleZoom(1.2)">🔍 ซูมเข้า (+)</button>
+      <button class="tool-btn" onclick="toggleZoom(0.8)">🔍 ซูมออก (-)</button>
+      <button class="tool-btn" onclick="resetZoom()">⟲ 100%</button>
+    </div>
+
+    <div class="figma-tools">
+      <a href="00_all_screens_figma_board.svg" download class="tool-btn" style="text-decoration: none;">
+        📥 ดาวน์โหลด Master Board (SVG)
+      </a>
+      <a href="figma_tokens.json" download class="tool-btn" style="text-decoration: none;">
+        🎨 Tokens JSON
+      </a>
+      <button class="tool-btn primary" onclick="copyActiveFrame()">
+        📋 Copy เข้า Figma (Ctrl+V)
+      </button>
+    </div>
+  </header>
+
+  <!-- Workspace -->
+  <div class="workspace">
+    <!-- Left Sidebar: Screens -->
+    <div class="sidebar-left">
+      <div class="panel-header">
+        <span>Screens (12 Frames)</span>
+        <span>iPhone 16 Pro</span>
+      </div>
+      <div class="screen-list" id="screenList">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="panel-header">
+        <span>Component Files</span>
+      </div>
+      <div style="padding: 12px 16px;">
+        <a href="figma_ui_kit_components.svg" download style="color: #38bdf8; text-decoration: none; font-size: 12px; display: block; margin-bottom: 8px;">
+          🧩 figma_ui_kit_components.svg
+        </a>
+        <a href="figma_tokens.json" download style="color: #34d399; text-decoration: none; font-size: 12px; display: block;">
+          🎨 figma_tokens.json (W3C Format)
+        </a>
+      </div>
+    </div>
+
+    <!-- Center Infinite Canvas -->
+    <div class="canvas-viewport" id="viewport">
+      <div class="canvas-board" id="canvasBoard">
+        <!-- 12 Artboards Rendered Here -->
+      </div>
+    </div>
+
+    <!-- Right Sidebar: Inspect -->
+    <div class="sidebar-right">
+      <div class="inspect-title" id="inspectTitle">Properties & Specs</div>
+      
+      <div style="color: #8c8c8c; margin-bottom: 8px; font-size: 11px;">FRAME DIMENSIONS</div>
+      <div class="token-row">
+        <span>Size</span>
+        <span style="font-family: 'JetBrains Mono'; color: #fff;">393 × 852 px</span>
+      </div>
+      <div class="token-row">
+        <span>Radius</span>
+        <span style="font-family: 'JetBrains Mono'; color: #fff;">44 px</span>
+      </div>
+      <div class="token-row">
+        <span>Layout</span>
+        <span style="color: #38bdf8;">Auto Layout (Vertical)</span>
+      </div>
+
+      <div style="color: #8c8c8c; margin: 16px 0 8px 0; font-size: 11px;">DESIGN TOKENS USED</div>
+      <div class="token-row">
+        <span><span class="color-swatch" style="background: #2D6BFF;"></span>Primary</span>
+        <span style="font-family: 'JetBrains Mono';">#2D6BFF</span>
+      </div>
+      <div class="token-row">
+        <span><span class="color-swatch" style="background: #0FBF7F;"></span>Success (เขาติดเรา)</span>
+        <span style="font-family: 'JetBrains Mono';">#0FBF7F</span>
+      </div>
+      <div class="token-row">
+        <span><span class="color-swatch" style="background: #FF8A3D;"></span>Warn (เราติดเขา)</span>
+        <span style="font-family: 'JetBrains Mono';">#FF8A3D</span>
+      </div>
+      <div class="token-row">
+        <span><span class="color-swatch" style="background: #EC4899;"></span>AI Accent</span>
+        <span style="font-family: 'JetBrains Mono';">#EC4899</span>
+      </div>
+
+      <div style="color: #8c8c8c; margin: 16px 0 8px 0; font-size: 11px;">FLUTTER WIDGET CODE</div>
+      <div class="code-box" id="codeSnippet">
+// Select a screen to inspect
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button class="action-btn" style="width: 100%; padding: 10px;" onclick="copyActiveFrame()">
+          📋 Copy SVG สำหรับวางใน Figma
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast">คัดลอก SVG เรียบร้อย! กด Ctrl + V วางใน Figma ได้เลย</div>
+
+  <script>
+    const screens = [
+      { id: '01', file: '01_home_dashboard.svg', name: 'Home Dashboard', desc: 'หน้าแรก & ยอดสุทธิ' },
+      { id: '02', file: '02_manual_bill_entry.svg', name: 'Manual Bill Entry', desc: 'กรอกรายละเอียดบิล & รายการ' },
+      { id: '03', file: '03_split_mode_selection.svg', name: 'Split Mode Selector', desc: 'วิธีหารบิล & ปัดเศษสตางค์' },
+      { id: '04', file: '04_bill_summary_breakdown.svg', name: 'Bill Summary', desc: 'สรุปยอดใบเสร็จ & รายบุคคล' },
+      { id: '05', file: '05_payment_promptpay_qr.svg', name: 'Payment & PromptPay QR', desc: 'หน้าชำระเงิน & QR Code' },
+      { id: '06', file: '06_voice_nudge_ai_studio.svg', name: 'AI Voice Nudge Studio', desc: 'แต่งเสียง AI & Gemini Prompt' },
+      { id: '07', file: '07_voice_record_effects.svg', name: 'Voice Record & FX', desc: 'อัดเสียงไมค์จริง & เอฟเฟกต์' },
+      { id: '08', file: '08_zero_install_web_receiver.svg', name: 'Zero-Install Web', desc: 'หน้าเว็บสำหรับเพื่อน (Web View)' },
+      { id: '09', file: '09_groups_debt_simplification.svg', name: 'Groups & Debt Graph', desc: 'กลุ่ม & กราฟลดยอดหนี้' },
+      { id: '10', file: '10_statistics_analytics.svg', name: 'Statistics & Reports', desc: 'สถิติรายจ่าย & โดนัทชาร์ต' },
+      { id: '11', file: '11_user_profile_settings.svg', name: 'Profile & Bank Accounts', desc: 'โปรไฟล์ & จัดการบัญชีธนาคาร' },
+      { id: '12', file: '12_notifications_modal.svg', name: 'Notifications Sheet', desc: 'การแจ้งเตือน Modal Sheet' }
+    ];
+
+    let currentScale = 0.85;
+    let selectedScreen = screens[0];
+
+    // Build sidebar & canvas
+    const listEl = document.getElementById('screenList');
+    const boardEl = document.getElementById('canvasBoard');
+
+    screens.forEach((s, idx) => {
+      // Sidebar Item
+      const item = document.createElement('div');
+      item.className = `screen-item ${idx === 0 ? 'active' : ''}`;
+      item.id = `item-${s.id}`;
+      item.innerHTML = `<span class="screen-icon">📱</span><span>${s.id}. ${s.name}</span>`;
+      item.onclick = () => selectScreen(s);
+      listEl.appendChild(item);
+
+      // Canvas Artboard
+      const container = document.createElement('div');
+      container.className = 'artboard-container';
+      container.id = `board-${s.id}`;
+      container.innerHTML = `
+        <div class="artboard-label">
+          <span>${s.name}</span>
+          <span class="num">${s.id}</span>
+        </div>
+        <div class="artboard-card" onclick="selectScreen(screens[${idx}])">
+          <iframe src="${s.file}"></iframe>
+        </div>
+        <div class="card-actions">
+          <button class="action-btn" onclick="copyScreenSvg('${s.file}')">📋 Copy SVG</button>
+          <a class="action-btn" href="${s.file}" download style="text-decoration:none;">⬇️ โหลด .svg</a>
+        </div>
+      `;
+      boardEl.appendChild(container);
+    });
+
+    boardEl.style.transform = `scale(${currentScale})`;
+
+    function selectScreen(s) {
+      selectedScreen = s;
+      document.querySelectorAll('.screen-item').forEach(el => el.classList.remove('active'));
+      document.getElementById(`item-${s.id}`).classList.add('active');
+
+      document.getElementById('inspectTitle').innerText = `${s.id}. ${s.name}`;
+      document.getElementById('codeSnippet').innerText = 
+`// Flutter Screen: lib/screens/${s.name.toLowerCase().replace(/ /g, '_')}_screen.dart
+class ${s.name.replace(/ /g, '')}Screen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.bg,
+      body: SafeArea(...),
+    );
+  }
+}`;
+
+      // Scroll canvas to center the screen
+      const el = document.getElementById(`board-${s.id}`);
+      el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+    }
+
+    function toggleZoom(delta) {
+      currentScale = Math.min(Math.max(currentScale * delta, 0.3), 2.0);
+      boardEl.style.transform = `scale(${currentScale})`;
+    }
+
+    function resetZoom() {
+      currentScale = 0.85;
+      boardEl.style.transform = `scale(${currentScale})`;
+    }
+
+    async function copyScreenSvg(fileName) {
+      try {
+        const res = await fetch(fileName);
+        const text = await res.text();
+        await navigator.clipboard.writeText(text);
+        showToast();
+      } catch (err) {
+        alert('คัดลอกไฟล์: ' + fileName);
+      }
+    }
+
+    function copyActiveFrame() {
+      if (selectedScreen) {
+        copyScreenSvg(selectedScreen.file);
+      }
+    }
+
+    function showToast() {
+      const toast = document.getElementById('toast');
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 3000);
+    }
+  </script>
+</body>
+</html>

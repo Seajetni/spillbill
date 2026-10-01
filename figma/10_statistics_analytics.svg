@@ -1,0 +1,146 @@
+<svg width="393" height="852" viewBox="0 0 393 852" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow-s10" x="-4" y="0" width="401" height="860" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F1729" flood-opacity="0.06"/>
+    </filter>
+    <linearGradient id="primary-grad-s10" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D6BFF"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="393" height="852" rx="44" fill="#F5F7FA"/>
+
+  <!-- Status Bar -->
+  <rect x="131" y="11" width="131" height="35" rx="17.5" fill="#000000"/>
+  <text x="36" y="34" font-family="'Prompt', sans-serif" font-size="15" font-weight="600" fill="#0F1729">9:41</text>
+  <path d="M340 24h18v10h-18z" rx="3" stroke="#0F1729" stroke-width="2" fill="none"/>
+  <rect x="342" y="26" width="12" height="6" rx="1.5" fill="#0F1729"/>
+  <path d="M359 27v4" stroke="#0F1729" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- App Bar -->
+  <g id="AppBar">
+    <text x="24" y="86" font-family="'Kanit', sans-serif" font-size="22" font-weight="700" fill="#0F1729">สถิติและรายงาน</text>
+    
+    <!-- Export PDF Icon Button -->
+    <rect x="290" y="62" width="38" height="38" rx="12" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="309" y="86" font-size="16" text-anchor="middle">📄</text>
+
+    <!-- Export CSV Icon Button -->
+    <rect x="335" y="62" width="38" height="38" rx="12" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="354" y="86" font-size="16" text-anchor="middle">📊</text>
+  </g>
+
+  <!-- Filter Period Chips -->
+  <g id="PeriodChips">
+    <rect x="20" y="112" width="80" height="34" rx="10" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="60" y="134" font-family="'Prompt', sans-serif" font-size="12" font-weight="500" fill="#4B5563" text-anchor="middle">เดือนนี้</text>
+
+    <rect x="108" y="112" width="86" height="34" rx="10" fill="#2D6BFF"/>
+    <text x="151" y="134" font-family="'Prompt', sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">3 เดือน</text>
+
+    <rect x="202" y="112" width="80" height="34" rx="10" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="242" y="134" font-family="'Prompt', sans-serif" font-size="12" font-weight="500" fill="#4B5563" text-anchor="middle">ปี 2569</text>
+  </g>
+
+  <!-- Total Summary Card -->
+  <g id="TotalCard" filter="url(#shadow-s10)">
+    <rect x="20" y="160" width="353" height="84" rx="20" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="38" y="188" font-family="'Prompt', sans-serif" font-size="12" fill="#9AA3B2">ค่าใช้จ่ายรวมในช่วงเวลานี้</text>
+    <text x="38" y="222" font-family="'Kanit', sans-serif" font-size="30" font-weight="800" fill="#0F1729">฿18,940.00</text>
+    <rect x="286" y="188" width="72" height="28" rx="8" fill="#E4F8F1"/>
+    <text x="322" y="206" font-family="'Prompt', sans-serif" font-size="11" font-weight="700" fill="#0FBF7F" text-anchor="middle">24 บิล</text>
+  </g>
+
+  <!-- Donut Chart & Category Analysis Card -->
+  <g id="ChartCard" filter="url(#shadow-s10)">
+    <rect x="20" y="258" width="353" height="236" rx="20" fill="#FFFFFF" stroke="#EDF0F5"/>
+    
+    <!-- Vector Donut Chart -->
+    <g transform="translate(196, 360)">
+      <!-- Arc 1: Food 48% (Blue) -->
+      <circle cx="0" cy="0" r="64" stroke="#2D6BFF" stroke-width="22" stroke-dasharray="193 402" stroke-dashoffset="0" fill="none"/>
+      <!-- Arc 2: Lodging 32% (Purple) -->
+      <circle cx="0" cy="0" r="64" stroke="#8B5CF6" stroke-width="22" stroke-dasharray="128 402" stroke-dashoffset="-193" fill="none"/>
+      <!-- Arc 3: Travel 14% (Amber) -->
+      <circle cx="0" cy="0" r="64" stroke="#F59E0B" stroke-width="22" stroke-dasharray="56 402" stroke-dashoffset="-321" fill="none"/>
+      <!-- Arc 4: Other 6% (Emerald) -->
+      <circle cx="0" cy="0" r="64" stroke="#10B981" stroke-width="22" stroke-dasharray="25 402" stroke-dashoffset="-377" fill="none"/>
+      
+      <!-- Inner text -->
+      <text x="0" y="-4" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2" text-anchor="middle">หมวดหลัก</text>
+      <text x="0" y="16" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#0F1729" text-anchor="middle">อาหาร 48%</text>
+    </g>
+
+    <text x="196" y="474" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#4B5563" text-anchor="middle">
+      สัดส่วนประเภทบิลที่ถูกหารบ่อยที่สุด
+    </text>
+  </g>
+
+  <!-- Category Breakdown List -->
+  <text x="24" y="522" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#0F1729">รายละเอียดแยกตามหมวดหมู่</text>
+
+  <g id="CategoryList" filter="url(#shadow-s10)">
+    <rect x="20" y="534" width="353" height="216" rx="20" fill="#FFFFFF" stroke="#EDF0F5"/>
+    
+    <!-- Cat 1: Food -->
+    <circle cx="48" cy="564" r="14" fill="#EAF0FF"/>
+    <text x="48" y="569" font-size="14" text-anchor="middle">🍜</text>
+    <text x="72" y="561" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#0F1729">อาหารและเครื่องดื่ม</text>
+    <text x="72" y="577" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2">48% • 14 รายการ</text>
+    <text x="355" y="569" font-family="'Prompt', sans-serif" font-size="13" font-weight="700" fill="#0F1729" text-anchor="end">฿9,091.20</text>
+    <line x1="72" y1="588" x2="355" y2="588" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- Cat 2: Lodging -->
+    <circle cx="48" cy="616" r="14" fill="#F3E8FF"/>
+    <text x="48" y="621" font-size="14" text-anchor="middle">🏡</text>
+    <text x="72" y="613" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#0F1729">ที่พักและสิ่งอำนวยความสะดวก</text>
+    <text x="72" y="629" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2">32% • 4 รายการ</text>
+    <text x="355" y="621" font-family="'Prompt', sans-serif" font-size="13" font-weight="700" fill="#0F1729" text-anchor="end">฿6,060.80</text>
+    <line x1="72" y1="640" x2="355" y2="640" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- Cat 3: Travel -->
+    <circle cx="48" cy="668" r="14" fill="#FEF3C7"/>
+    <text x="48" y="673" font-size="14" text-anchor="middle">🚗</text>
+    <text x="72" y="665" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#0F1729">การเดินทางและค่าน้ำมัน</text>
+    <text x="72" y="681" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2">14% • 3 รายการ</text>
+    <text x="355" y="673" font-family="'Prompt', sans-serif" font-size="13" font-weight="700" fill="#0F1729" text-anchor="end">฿2,651.60</text>
+    <line x1="72" y1="692" x2="355" y2="692" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- Cat 4: Other -->
+    <circle cx="48" cy="720" r="14" fill="#E4F8F1"/>
+    <text x="48" y="725" font-size="14" text-anchor="middle">🛒</text>
+    <text x="72" y="717" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#0F1729">ช้อปปิ้งและอื่นๆ</text>
+    <text x="72" y="733" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2">6% • 3 รายการ</text>
+    <text x="355" y="725" font-family="'Prompt', sans-serif" font-size="13" font-weight="700" fill="#0F1729" text-anchor="end">฿1,136.40</text>
+  </g>
+
+  <!-- Bottom Navigation Bar (Tab 4 active) -->
+  <g id="BottomNavBar">
+    <rect x="0" y="768" width="393" height="84" fill="#FFFFFF" stroke="#EDF0F5"/>
+    
+    <!-- Tab 1: Home -->
+    <path d="M48 788l-9 8v12h6v-8h6v8h6v-12z" fill="#9AA3B2"/>
+    <text x="48" y="820" font-family="'Prompt', sans-serif" font-size="10" font-weight="500" fill="#9AA3B2" text-anchor="middle">หน้าแรก</text>
+
+    <!-- Tab 2: Groups -->
+    <circle cx="120" cy="794" r="5" stroke="#9AA3B2" stroke-width="2" fill="none"/>
+    <path d="M112 808c0-4 4-6 8-6s8 2 8 6" stroke="#9AA3B2" stroke-width="2" fill="none"/>
+    <text x="120" y="820" font-family="'Prompt', sans-serif" font-size="10" font-weight="500" fill="#9AA3B2" text-anchor="middle">กลุ่ม</text>
+
+    <!-- Tab 3: Center Plus Action -->
+    <circle cx="196" cy="795" r="24" fill="url(#primary-grad-s10)"/>
+    <path d="M196 786v18M187 795h18" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Tab 4: Statistics (Active) -->
+    <path d="M266 808v-8M273 808v-14M280 808v-10" stroke="#2D6BFF" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="273" y="820" font-family="'Prompt', sans-serif" font-size="10" font-weight="600" fill="#2D6BFF" text-anchor="middle">สถิติ</text>
+
+    <!-- Tab 5: Profile -->
+    <circle cx="345" cy="794" r="5" stroke="#9AA3B2" stroke-width="2" fill="none"/>
+    <path d="M337 808c0-4 4-6 8-6s8 2 8 6" stroke="#9AA3B2" stroke-width="2" fill="none"/>
+    <text x="345" y="820" font-family="'Prompt', sans-serif" font-size="10" font-weight="500" fill="#9AA3B2" text-anchor="middle">โปรไฟล์</text>
+
+    <rect x="129" y="838" width="135" height="5" rx="2.5" fill="#0F1729"/>
+  </g>
+</svg>

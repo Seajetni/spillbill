@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/models.dart';
+import '../services/storage_service.dart';
 
 class SplitBillProvider extends ChangeNotifier {
   // Current logged in user profile fields
@@ -78,9 +79,151 @@ class SplitBillProvider extends ChangeNotifier {
   // Selected Group Category filter
   String groupCategoryFilter = 'ทั้งหมด';
 
-  SplitBillProvider() {
+  SplitBillProvider({Map<String, dynamic>? savedState}) {
     _initData();
+    if (savedState != null && savedState.isNotEmpty) {
+      importState(savedState);
+    } else {
+      _loadPersistedData();
+    }
   }
+
+  Future<void> _loadPersistedData() async {
+    final state = await StorageService.loadState();
+    if (state != null && state.isNotEmpty) {
+      importState(state);
+      notifyListeners();
+    } else {
+      _persistData();
+    }
+  }
+
+  Future<void> _persistData() async {
+    try {
+      await StorageService.saveState(exportState());
+    } catch (e) {
+      debugPrint('Error persisting data: $e');
+    }
+  }
+
+  Map<String, dynamic> exportState() {
+    return {
+      'version': 1,
+      'userName': userName,
+      'userAvatarEmoji': userAvatarEmoji,
+      'userPromptPay': userPromptPay,
+      'userBank': userBank,
+      'userBankAccountNumber': userBankAccountNumber,
+      'bankAccounts': bankAccounts.map((b) => b.toMap()).toList(),
+      'pushEnabled': pushEnabled,
+      'billDueReminder': billDueReminder,
+      'weeklySummary': weeklySummary,
+      'soundAndVibration': soundAndVibration,
+      'allowVoiceNudge': allowVoiceNudge,
+      'quietHoursEnabled': quietHoursEnabled,
+      'defaultPersona': defaultPersona,
+      'defaultEffect': defaultEffect,
+      'appLanguage': appLanguage,
+      'appCurrency': appCurrency,
+      'allMembers': allMembers.map((m) => m.toMap()).toList(),
+      'debts': debts.map((d) => d.toMap()).toList(),
+      'groups': groups.map((g) => g.toMap()).toList(),
+      'groupBills': groupBills.map((key, list) => MapEntry(key, list.map((gb) => gb.toMap()).toList())),
+      'notifications': notifications.map((n) => n.toMap()).toList(),
+      'activities': activities.map((a) => a.toMap()).toList(),
+      'voiceNudges': voiceNudges.map((vn) => vn.toMap()).toList(),
+      'savedBills': savedBills.map((b) => b.toMap()).toList(),
+    };
+  }
+
+  void importState(Map<String, dynamic> map) {
+    try {
+      if (map['userName'] != null) userName = map['userName'] as String;
+      if (map['userAvatarEmoji'] != null) userAvatarEmoji = map['userAvatarEmoji'] as String;
+      if (map['userPromptPay'] != null) userPromptPay = map['userPromptPay'] as String;
+      if (map['userBank'] != null) userBank = map['userBank'] as String;
+      if (map['userBankAccountNumber'] != null) userBankAccountNumber = map['userBankAccountNumber'] as String;
+
+      if (map['bankAccounts'] != null) {
+        bankAccounts = (map['bankAccounts'] as List<dynamic>)
+            .map((e) => BankAccountItem.fromMap(e as Map<String, dynamic>))
+            .toList();
+      }
+
+      if (map['pushEnabled'] != null) pushEnabled = map['pushEnabled'] as bool;
+      if (map['billDueReminder'] != null) billDueReminder = map['billDueReminder'] as bool;
+      if (map['weeklySummary'] != null) weeklySummary = map['weeklySummary'] as bool;
+      if (map['soundAndVibration'] != null) soundAndVibration = map['soundAndVibration'] as bool;
+
+      if (map['allowVoiceNudge'] != null) allowVoiceNudge = map['allowVoiceNudge'] as bool;
+      if (map['quietHoursEnabled'] != null) quietHoursEnabled = map['quietHoursEnabled'] as bool;
+      if (map['defaultPersona'] != null) defaultPersona = map['defaultPersona'] as String;
+      if (map['defaultEffect'] != null) defaultEffect = map['defaultEffect'] as String;
+
+      if (map['appLanguage'] != null) appLanguage = map['appLanguage'] as String;
+      if (map['appCurrency'] != null) appCurrency = map['appCurrency'] as String;
+
+      if (map['allMembers'] != null) {
+        final loadedMembers = (map['allMembers'] as List<dynamic>)
+            .map((e) => Member.fromMap(e as Map<String, dynamic>))
+            .toList();
+        if (loadedMembers.isNotEmpty) {
+          allMembers = loadedMembers;
+        }
+      }
+
+      if (map['debts'] != null) {
+        debts = (map['debts'] as List<dynamic>)
+            .map((e) => DebtRecord.fromMap(e as Map<String, dynamic>))
+            .toList();
+      }
+
+      if (map['groups'] != null) {
+        groups = (map['groups'] as List<dynamic>)
+            .map((e) => GroupModel.fromMap(e as Map<String, dynamic>))
+            .toList();
+      }
+
+      if (map['groupBills'] != null) {
+        final rawMap = map['groupBills'] as Map<String, dynamic>;
+        groupBills = rawMap.map(
+          (key, value) => MapEntry(
+            key,
+            (value as List<dynamic>)
+                .map((e) => GroupBill.fromMap(e as Map<String, dynamic>))
+                .toList(),
+          ),
+        );
+      }
+
+      if (map['notifications'] != null) {
+        notifications = (map['notifications'] as List<dynamic>)
+            .map((e) => AppNotification.fromMap(e as Map<String, dynamic>))
+            .toList();
+      }
+
+      if (map['activities'] != null) {
+        activities = (map['activities'] as List<dynamic>)
+            .map((e) => RecentActivity.fromMap(e as Map<String, dynamic>))
+            .toList();
+      }
+
+      if (map['voiceNudges'] != null) {
+        voiceNudges = (map['voiceNudges'] as List<dynamic>)
+            .map((e) => VoiceNudgeData.fromMap(e as Map<String, dynamic>))
+            .toList();
+      }
+
+      if (map['savedBills'] != null) {
+        savedBills = (map['savedBills'] as List<dynamic>)
+            .map((e) => Bill.fromMap(e as Map<String, dynamic>))
+            .toList();
+      }
+    } catch (e) {
+      debugPrint('Error importing state: $e');
+    }
+  }
+
 
   void _initData() {
     bankAccounts = [
@@ -426,6 +569,7 @@ class SplitBillProvider extends ChangeNotifier {
           timestamp: DateTime.now(),
         ),
       );
+      _persistData();
       notifyListeners();
     }
   }
@@ -571,6 +715,7 @@ class SplitBillProvider extends ChangeNotifier {
         currentDraftBill!.participantMemberIds.add(newMember.id);
       }
     }
+    _persistData();
     notifyListeners();
     return newMember;
   }
@@ -970,6 +1115,7 @@ class SplitBillProvider extends ChangeNotifier {
       ),
     );
 
+    _persistData();
     notifyListeners();
   }
 
@@ -987,6 +1133,7 @@ class SplitBillProvider extends ChangeNotifier {
       ),
     );
     groupBills[newId] = [];
+    _persistData();
     notifyListeners();
   }
 
@@ -1005,6 +1152,7 @@ class SplitBillProvider extends ChangeNotifier {
           timestamp: DateTime.now(),
         ),
       );
+      _persistData();
       notifyListeners();
     }
   }
@@ -1028,6 +1176,7 @@ class SplitBillProvider extends ChangeNotifier {
         memberCount: memberCount,
       ),
     );
+    _persistData();
     notifyListeners();
   }
 
@@ -1035,6 +1184,7 @@ class SplitBillProvider extends ChangeNotifier {
   void markNotificationAsRead(String id) {
     final notif = notifications.firstWhere((n) => n.id == id, orElse: () => notifications.first);
     notif.isRead = true;
+    _persistData();
     notifyListeners();
   }
 
@@ -1042,11 +1192,13 @@ class SplitBillProvider extends ChangeNotifier {
     for (var n in notifications) {
       n.isRead = true;
     }
+    _persistData();
     notifyListeners();
   }
 
   void clearNotification(String id) {
     notifications.removeWhere((n) => n.id == id);
+    _persistData();
     notifyListeners();
   }
 
@@ -1062,6 +1214,7 @@ class SplitBillProvider extends ChangeNotifier {
       relatedAction: 'view_payment',
     );
     notifications.insert(0, newNotif);
+    _persistData();
     notifyListeners();
   }
 
@@ -1079,6 +1232,7 @@ class SplitBillProvider extends ChangeNotifier {
     if (bank != null) userBank = bank;
     if (accNo != null) userBankAccountNumber = accNo;
     allMembers[0] = currentUser;
+    _persistData();
     notifyListeners();
   }
 
@@ -1090,6 +1244,7 @@ class SplitBillProvider extends ChangeNotifier {
         userBankAccountNumber = acc.accountNumber;
       }
     }
+    _persistData();
     notifyListeners();
   }
 
@@ -1103,6 +1258,7 @@ class SplitBillProvider extends ChangeNotifier {
         isPrimary: bankAccounts.isEmpty,
       ),
     );
+    _persistData();
     notifyListeners();
   }
 
@@ -1113,6 +1269,7 @@ class SplitBillProvider extends ChangeNotifier {
       userBank = bankAccounts.first.bankName;
       userBankAccountNumber = bankAccounts.first.accountNumber;
     }
+    _persistData();
     notifyListeners();
   }
 
@@ -1126,6 +1283,7 @@ class SplitBillProvider extends ChangeNotifier {
     if (due != null) billDueReminder = due;
     if (weekly != null) weeklySummary = weekly;
     if (sound != null) soundAndVibration = sound;
+    _persistData();
     notifyListeners();
   }
 
@@ -1139,6 +1297,7 @@ class SplitBillProvider extends ChangeNotifier {
     if (quiet != null) quietHoursEnabled = quiet;
     if (persona != null) defaultPersona = persona;
     if (effect != null) defaultEffect = effect;
+    _persistData();
     notifyListeners();
   }
 
@@ -1155,16 +1314,19 @@ class SplitBillProvider extends ChangeNotifier {
         timestamp: DateTime.now(),
       ),
     );
+    _persistData();
     notifyListeners();
   }
 
   void setLanguage(String lang) {
     appLanguage = lang;
+    _persistData();
     notifyListeners();
   }
 
   void setCurrency(String curr) {
     appCurrency = curr;
+    _persistData();
     notifyListeners();
   }
 
@@ -1185,6 +1347,8 @@ class SplitBillProvider extends ChangeNotifier {
     defaultPersona = 'น้องนุ่ม';
     defaultEffect = 'ปกติ';
     _initData();
+    StorageService.clearState();
+    _persistData();
     notifyListeners();
   }
 }

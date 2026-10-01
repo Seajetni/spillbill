@@ -1,0 +1,135 @@
+<svg width="4960" height="2100" viewBox="0 0 4960 2100" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <filter id="master-shadow" x="-8" y="0" width="415" height="870" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#0F1729" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="4960" height="2100" fill="#141414"/>
+
+  <!-- Master Header Banner -->
+  <g id="MasterHeader" transform="translate(100, 60)">
+    <rect width="4760" height="100" rx="24" fill="#1E293B" stroke="#334155"/>
+    <text x="50" y="52" font-family="'Kanit', sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">❖ SplitBill Application — Master Figma System Board (Complete Flow)</text>
+    <text x="50" y="80" font-family="'Prompt', sans-serif" font-size="16" fill="#94A3B8">ระบบจำลองหน้าจอและ Prototype Flow ครบ 12 จอหลัก • รองรับการ Import เข้า Figma โดยตรง • Dimension: iPhone 16 Pro (393 × 852 px)</text>
+    
+    <rect x="4460" y="30" width="250" height="42" rx="12" fill="#0D99FF"/>
+    <text x="4585" y="56" font-family="'Prompt', sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">Figma Native Vectors</text>
+  </g>
+
+  <!-- ROW 1: Core Bill Flow (Screens 01 - 06) -->
+  <!-- Col 1: Screen 01 - Home Dashboard -->
+  <g id="FigmaFrame_01" transform="translate(100, 220)" filter="url(#master-shadow)">
+    <text x="0" y="-14" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#38BDF8">01. Home Dashboard (หน้าแรก &amp; ยอดสุทธิ)</text>
+    <image href="01_home_dashboard.svg" width="393" height="852"/>
+  </g>
+
+  <!-- Flow Arrow 1 -> 2 -->
+  <g transform="translate(505, 600)">
+    <line x1="0" y1="0" x2="65" y2="0" stroke="#0D99FF" stroke-width="3" stroke-dasharray="6 6"/>
+    <polygon points="75,0 60,-6 60,6" fill="#0D99FF"/>
+    <rect x="10" y="-24" width="55" height="18" rx="4" fill="#0D99FF"/>
+    <text x="37" y="-11" font-family="'Prompt', sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">สร้างบิล</text>
+  </g>
+
+  <!-- Col 2: Screen 02 - Manual Bill Entry -->
+  <g id="FigmaFrame_02" transform="translate(590, 220)" filter="url(#master-shadow)">
+    <text x="0" y="-14" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#38BDF8">02. Manual Bill Entry (กรอกบิล &amp; รายการ)</text>
+    <image href="02_manual_bill_entry.svg" width="393" height="852"/>
+  </g>
+
+  <!-- Flow Arrow 2 -> 3 -->
+  <g transform="translate(995, 600)">
+    <line x1="0" y1="0" x2="65" y2="0" stroke="#0D99FF" stroke-width="3" stroke-dasharray="6 6"/>
+    <polygon points="75,0 60,-6 60,6" fill="#0D99FF"/>
+    <rect x="10" y="-24" width="55" height="18" rx="4" fill="#0D99FF"/>
+    <text x="37" y="-11" font-family="'Prompt', sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">เลือกวิธี</text>
+  </g>
+
+  <!-- Col 3: Screen 03 - Split Mode Selection -->
+  <g id="FigmaFrame_03" transform="translate(1080, 220)" filter="url(#master-shadow)">
+    <text x="0" y="-14" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#38BDF8">03. Split Mode (วิธีหาร &amp; ปัดเศษสตางค์)</text>
+    <image href="03_split_mode_selection.svg" width="393" height="852"/>
+  </g>
+
+  <!-- Flow Arrow 3 -> 4 -->
+  <g transform="translate(1485, 600)">
+    <line x1="0" y1="0" x2="65" y2="0" stroke="#0D99FF" stroke-width="3" stroke-dasharray="6 6"/>
+    <polygon points="75,0 60,-6 60,6" fill="#0D99FF"/>
+    <rect x="10" y="-24" width="55" height="18" rx="4" fill="#0D99FF"/>
+    <text x="37" y="-11" font-family="'Prompt', sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">สรุปยอด</text>
+  </g>
+
+  <!-- Col 4: Screen 04 - Bill Summary Breakdown -->
+  <g id="FigmaFrame_04" transform="translate(1570, 220)" filter="url(#master-shadow)">
+    <text x="0" y="-14" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#38BDF8">04. Bill Summary (ใบเสร็จ &amp; หุ้นจ่าย)</text>
+    <image href="04_bill_summary_breakdown.svg" width="393" height="852"/>
+  </g>
+
+  <!-- Flow Arrow 4 -> 5 -->
+  <g transform="translate(1975, 600)">
+    <line x1="0" y1="0" x2="65" y2="0" stroke="#0FBF7F" stroke-width="3" stroke-dasharray="6 6"/>
+    <polygon points="75,0 60,-6 60,6" fill="#0FBF7F"/>
+    <rect x="10" y="-24" width="55" height="18" rx="4" fill="#0FBF7F"/>
+    <text x="37" y="-11" font-family="'Prompt', sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">ชำระเงิน</text>
+  </g>
+
+  <!-- Col 5: Screen 05 - Payment PromptPay QR -->
+  <g id="FigmaFrame_05" transform="translate(2060, 220)" filter="url(#master-shadow)">
+    <text x="0" y="-14" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#34D399">05. Payment &amp; QR (หน้าโอนพร้อมเพย์)</text>
+    <image href="05_payment_promptpay_qr.svg" width="393" height="852"/>
+  </g>
+
+  <!-- Flow Arrow 4 -> 6 (AI Nudge) -->
+  <g transform="translate(2465, 600)">
+    <line x1="0" y1="0" x2="65" y2="0" stroke="#EC4899" stroke-width="3" stroke-dasharray="6 6"/>
+    <polygon points="75,0 60,-6 60,6" fill="#EC4899"/>
+    <rect x="10" y="-24" width="55" height="18" rx="4" fill="#EC4899"/>
+    <text x="37" y="-11" font-family="'Prompt', sans-serif" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">ทวงเงิน</text>
+  </g>
+
+  <!-- Col 6: Screen 06 - AI Voice Nudge Studio -->
+  <g id="FigmaFrame_06" transform="translate(2550, 220)" filter="url(#master-shadow)">
+    <text x="0" y="-14" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#F472B6">06. AI Voice Studio (เสียงสังเคราะห์ AI)</text>
+    <image href="06_voice_nudge_ai_studio.svg" width="393" height="852"/>
+  </g>
+
+
+  <!-- ROW 2: Advanced Features, Receiver, Groups, Analytics (Screens 07 - 12) -->
+  <!-- Col 1: Screen 07 - Voice Recording & Effects -->
+  <g id="FigmaFrame_07" transform="translate(100, 1160)" filter="url(#master-shadow)">
+    <text x="0" y="-14" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#F87171">07. Voice Record &amp; FX (อัดเสียงไมค์จริง)</text>
+    <image href="07_voice_record_effects.svg" width="393" height="852"/>
+  </g>
+
+  <!-- Col 2: Screen 08 - Zero-Install Web Receiver -->
+  <g id="FigmaFrame_08" transform="translate(590, 1160)" filter="url(#master-shadow)">
+    <text x="0" y="-14" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#38BDF8">08. Web Receiver (หน้าเว็บฝั่งเพื่อน Zero-Install)</text>
+    <image href="08_zero_install_web_receiver.svg" width="393" height="852"/>
+  </g>
+
+  <!-- Col 3: Screen 09 - Groups & Debt Simplification -->
+  <g id="FigmaFrame_09" transform="translate(1080, 1160)" filter="url(#master-shadow)">
+    <text x="0" y="-14" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#818CF8">09. Groups &amp; Debt Graph (กราฟลดยอดหนี้)</text>
+    <image href="09_groups_debt_simplification.svg" width="393" height="852"/>
+  </g>
+
+  <!-- Col 4: Screen 10 - Statistics & Analytics -->
+  <g id="FigmaFrame_10" transform="translate(1570, 1160)" filter="url(#master-shadow)">
+    <text x="0" y="-14" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#34D399">10. Statistics (สถิติรายจ่าย &amp; Export)</text>
+    <image href="10_statistics_analytics.svg" width="393" height="852"/>
+  </g>
+
+  <!-- Col 5: Screen 11 - User Profile & Bank Settings -->
+  <g id="FigmaFrame_11" transform="translate(2060, 1160)" filter="url(#master-shadow)">
+    <text x="0" y="-14" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#94A3B8">11. Profile &amp; Settings (บัญชีธนาคาร &amp; กฎ Apple)</text>
+    <image href="11_user_profile_settings.svg" width="393" height="852"/>
+  </g>
+
+  <!-- Col 6: Screen 12 - Notifications Modal Sheet -->
+  <g id="FigmaFrame_12" transform="translate(2550, 1160)" filter="url(#master-shadow)">
+    <text x="0" y="-14" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#FBBF24">12. Notifications (แจ้งเตือน &amp; สลิป)</text>
+    <image href="12_notifications_modal.svg" width="393" height="852"/>
+  </g>
+</svg>

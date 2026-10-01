@@ -59,6 +59,17 @@ app.get('/', async (req, res) => {
           </div>
         </div>
 
+        <div class="bg-gradient-to-r from-indigo-50 to-pink-50 border border-indigo-100 rounded-xl p-4 mb-6 text-left">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-lg">💻</span>
+            <span class="text-xs font-bold text-slate-800">SplitBill for Windows (1-Click EXE)</span>
+          </div>
+          <p class="text-xs text-slate-600 mb-3">ติดตั้งและเปิดใช้งานบน Windows 10/11 ทันทีในคลิกเดียว</p>
+          <a href="https://github.com/Seajetni/split_bill/releases/latest" class="inline-flex items-center justify-center w-full px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold shadow-sm transition">
+            ⚡ ดาวน์โหลด SplitBill_Setup.exe
+          </a>
+        </div>
+
         <p class="text-xs text-slate-400">
           เมื่อผู้ใช้ส่งเสียงทวง ลิงก์สำหรับผู้รับจะอยู่ที่ <code>/n/:nudgeId</code>
         </p>

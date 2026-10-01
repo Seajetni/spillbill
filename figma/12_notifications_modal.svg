@@ -1,0 +1,97 @@
+<svg width="393" height="852" viewBox="0 0 393 852" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow-modal" x="-10" y="-10" width="413" height="872" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="-8" stdDeviation="16" flood-color="#0F1729" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Dimmed Background Overlay -->
+  <rect width="393" height="852" rx="44" fill="#0F1729" fill-opacity="0.65"/>
+
+  <!-- Status Bar (Light for dark bg) -->
+  <rect x="131" y="11" width="131" height="35" rx="17.5" fill="#000000"/>
+  <text x="36" y="34" font-family="'Prompt', sans-serif" font-size="15" font-weight="600" fill="#FFFFFF">9:41</text>
+  <path d="M340 24h18v10h-18z" rx="3" stroke="#FFFFFF" stroke-width="2" fill="none"/>
+  <rect x="342" y="26" width="12" height="6" rx="1.5" fill="#FFFFFF"/>
+  <path d="M359 27v4" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Bottom Sheet Container -->
+  <g id="ModalSheet" filter="url(#shadow-modal)">
+    <rect x="0" y="140" width="393" height="712" rx="32" fill="#FFFFFF"/>
+    
+    <!-- Drag Handle -->
+    <rect x="176" y="152" width="40" height="5" rx="2.5" fill="#CBD5E1"/>
+
+    <!-- Header -->
+    <text x="24" y="196" font-family="'Kanit', sans-serif" font-size="20" font-weight="700" fill="#0F1729">การแจ้งเตือน</text>
+    <rect x="140" y="180" width="28" height="20" rx="10" fill="#E5484D"/>
+    <text x="154" y="194" font-family="'Prompt', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+    
+    <text x="369" y="194" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#2D6BFF" text-anchor="end">อ่านทั้งหมด</text>
+  </g>
+
+  <!-- Notification Filter Chips -->
+  <g id="FilterChips">
+    <rect x="20" y="218" width="68" height="32" rx="10" fill="#2D6BFF"/>
+    <text x="54" y="239" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">ทั้งหมด</text>
+
+    <rect x="94" y="218" width="86" height="32" rx="10" fill="#F8FAFC" stroke="#EDF0F5"/>
+    <text x="137" y="239" font-family="'Prompt', sans-serif" font-size="12" font-weight="500" fill="#4B5563" text-anchor="middle">ยังไม่อ่าน (3)</text>
+
+    <rect x="186" y="218" width="94" height="32" rx="10" fill="#F8FAFC" stroke="#EDF0F5"/>
+    <text x="233" y="239" font-family="'Prompt', sans-serif" font-size="12" font-weight="500" fill="#4B5563" text-anchor="middle">การชำระเงิน</text>
+
+    <rect x="286" y="218" width="87" height="32" rx="10" fill="#F8FAFC" stroke="#EDF0F5"/>
+    <text x="329" y="239" font-family="'Prompt', sans-serif" font-size="12" font-weight="500" fill="#4B5563" text-anchor="middle">เสียงทวง</text>
+  </g>
+
+  <!-- Notification Items List -->
+  <g id="NotificationList">
+    <!-- Notif 1 (Unread) -->
+    <rect x="20" y="266" width="353" height="92" rx="18" fill="#F0FDF4" stroke="#DCFCE7"/>
+    <circle cx="52" cy="302" r="18" fill="#E4F8F1"/>
+    <text x="52" y="309" font-size="18" text-anchor="middle">💸</text>
+    <text x="80" y="296" font-family="'Prompt', sans-serif" font-size="14" font-weight="700" fill="#0F1729">มิ้นท์โอนเงินให้คุณแล้ว ฿450.00</text>
+    <text x="80" y="316" font-family="'Prompt', sans-serif" font-size="12" fill="#4B5563">บิลหมูกระทะริมน้ำ • 10 นาทีที่แล้ว</text>
+    <rect x="295" y="324" width="66" height="24" rx="6" fill="#10B981"/>
+    <text x="328" y="340" font-family="'Prompt', sans-serif" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">ดูสลิป</text>
+    <!-- Unread dot -->
+    <circle cx="355" cy="286" r="4" fill="#0FBF7F"/>
+
+    <!-- Notif 2 (Unread) -->
+    <rect x="20" y="366" width="353" height="92" rx="18" fill="#FDF2F8" stroke="#FCE7F3"/>
+    <circle cx="52" cy="402" r="18" fill="#FCE7F3"/>
+    <text x="52" y="409" font-size="18" text-anchor="middle">🔊</text>
+    <text x="80" y="396" font-family="'Prompt', sans-serif" font-size="14" font-weight="700" fill="#0F1729">โอ๊คส่งเสียงทวงเงิน (ค่าเน็ตคอนโด)</text>
+    <text x="80" y="416" font-family="'Prompt', sans-serif" font-size="12" fill="#4B5563">ยอด ฿280.00 • 45 นาทีที่แล้ว</text>
+    <rect x="295" y="424" width="66" height="24" rx="6" fill="#EC4899"/>
+    <text x="328" y="440" font-family="'Prompt', sans-serif" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">ฟังเสียง</text>
+    <!-- Unread dot -->
+    <circle cx="355" cy="386" r="4" fill="#EC4899"/>
+
+    <!-- Notif 3 (Unread) -->
+    <rect x="20" y="466" width="353" height="92" rx="18" fill="#EFF6FF" stroke="#DBEAFE"/>
+    <circle cx="52" cy="502" r="18" fill="#DBEAFE"/>
+    <text x="52" y="509" font-size="18" text-anchor="middle">🍜</text>
+    <text x="80" y="496" font-family="'Prompt', sans-serif" font-size="14" font-weight="700" fill="#0F1729">เพิ่มคุณเข้าบิล ราเมงฮาจิบัง</text>
+    <text x="80" y="516" font-family="'Prompt', sans-serif" font-size="12" fill="#4B5563">ป๊อปเพิ่มคุณในบิลยอด ฿173.24 • 2 ชม. ที่แล้ว</text>
+    <rect x="295" y="524" width="66" height="24" rx="6" fill="#2D6BFF"/>
+    <text x="328" y="540" font-family="'Prompt', sans-serif" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">ดูบิล</text>
+    <!-- Unread dot -->
+    <circle cx="355" cy="486" r="4" fill="#2D6BFF"/>
+
+    <!-- Notif 4 (Read) -->
+    <rect x="20" y="566" width="353" height="82" rx="18" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <circle cx="52" cy="607" r="18" fill="#F8FAFC"/>
+    <text x="52" y="614" font-size="18" text-anchor="middle">⏰</text>
+    <text x="80" y="600" font-family="'Prompt', sans-serif" font-size="14" font-weight="500" fill="#0F1729">บิลค่าน้ำมันเขาใหญ่ ครบกำหนดชำระ</text>
+    <text x="80" y="620" font-family="'Prompt', sans-serif" font-size="12" fill="#9AA3B2">กรุณาชำระเงินให้เฟิร์น • 1 วันที่แล้ว</text>
+  </g>
+
+  <!-- Clear All Button -->
+  <rect x="20" y="680" width="353" height="46" rx="14" fill="#F8FAFC" stroke="#EDF0F5"/>
+  <text x="196" y="708" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#9AA3B2" text-anchor="middle">ล้างการแจ้งเตือนที่อ่านแล้วทั้งหมด</text>
+
+  <!-- Home Indicator -->
+  <rect x="129" y="838" width="135" height="5" rx="2.5" fill="#0F1729"/>
+</svg>

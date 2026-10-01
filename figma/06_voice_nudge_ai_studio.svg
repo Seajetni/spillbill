@@ -1,0 +1,152 @@
+<svg width="393" height="852" viewBox="0 0 393 852" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow-s6" x="-4" y="0" width="401" height="860" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F1729" flood-opacity="0.06"/>
+    </filter>
+    <linearGradient id="ai-grad-s6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="393" height="852" rx="44" fill="#F5F7FA"/>
+
+  <!-- Status Bar -->
+  <rect x="131" y="11" width="131" height="35" rx="17.5" fill="#000000"/>
+  <text x="36" y="34" font-family="'Prompt', sans-serif" font-size="15" font-weight="600" fill="#0F1729">9:41</text>
+  <path d="M340 24h18v10h-18z" rx="3" stroke="#0F1729" stroke-width="2" fill="none"/>
+  <rect x="342" y="26" width="12" height="6" rx="1.5" fill="#0F1729"/>
+  <path d="M359 27v4" stroke="#0F1729" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- App Bar -->
+  <g id="AppBar">
+    <rect x="20" y="60" width="40" height="40" rx="12" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <path d="M43 75l-5 5 5 5" stroke="#0F1729" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="196" y="86" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#0F1729" text-anchor="middle">AI Voice Nudge Studio</text>
+  </g>
+
+  <!-- Target Recipient Mini-Card -->
+  <g id="TargetCard" filter="url(#shadow-s6)">
+    <rect x="20" y="114" width="353" height="66" rx="18" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <circle cx="50" cy="147" r="18" fill="#FFF1E7"/>
+    <text x="50" y="154" font-size="18" text-anchor="middle">👩‍🎨</text>
+    <text x="78" y="141" font-family="'Prompt', sans-serif" font-size="12" fill="#9AA3B2">สร้างเสียงทวงหนี้สำหรับ</text>
+    <text x="78" y="161" font-family="'Prompt', sans-serif" font-size="15" font-weight="700" fill="#0F1729">มิ้นท์ • ฿173.24 (ราเมงฮาจิบัง)</text>
+    
+    <rect x="286" y="132" width="72" height="30" rx="8" fill="#FDF2F8"/>
+    <text x="322" y="152" font-family="'Prompt', sans-serif" font-size="11" font-weight="700" fill="#EC4899" text-anchor="middle">✨ AI Active</text>
+  </g>
+
+  <!-- Persona Selection Section -->
+  <text x="24" y="206" font-family="'Kanit', sans-serif" font-size="15" font-weight="700" fill="#0F1729">เลือกบุคลิกเสียง (AI Persona)</text>
+  
+  <g id="PersonaList">
+    <!-- Persona 1: น้องนุ่ม (Selected) -->
+    <rect x="20" y="218" width="108" height="96" rx="18" fill="#FDF2F8" stroke="#EC4899" stroke-width="2"/>
+    <circle cx="74" cy="248" r="18" fill="#FFFFFF"/>
+    <text x="74" y="255" font-size="18" text-anchor="middle">😊</text>
+    <text x="74" y="284" font-family="'Prompt', sans-serif" font-size="13" font-weight="700" fill="#EC4899" text-anchor="middle">น้องนุ่ม</text>
+    <text x="74" y="300" font-family="'Prompt', sans-serif" font-size="10" fill="#9AA3B2" text-anchor="middle">สุภาพ นุ่มนวล</text>
+
+    <!-- Persona 2: เพื่อนซี้ -->
+    <rect x="142" y="218" width="108" height="96" rx="18" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <circle cx="196" cy="248" r="18" fill="#F8FAFC"/>
+    <text x="196" y="255" font-size="18" text-anchor="middle">😎</text>
+    <text x="196" y="284" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#0F1729" text-anchor="middle">เพื่อนซี้</text>
+    <text x="196" y="300" font-family="'Prompt', sans-serif" font-size="10" fill="#9AA3B2" text-anchor="middle">กันเอง ตรงไปตรงมา</text>
+
+    <!-- Persona 3: หุ่นยนต์ -->
+    <rect x="265" y="218" width="108" height="96" rx="18" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <circle cx="319" cy="248" r="18" fill="#F8FAFC"/>
+    <text x="319" y="255" font-size="18" text-anchor="middle">🤖</text>
+    <text x="319" y="284" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#0F1729" text-anchor="middle">หุ่นยนต์</text>
+    <text x="319" y="300" font-family="'Prompt', sans-serif" font-size="10" fill="#9AA3B2" text-anchor="middle">ตลกแห้ง กวนๆ</text>
+  </g>
+
+  <!-- Escalation Ladder Slider -->
+  <text x="24" y="342" font-family="'Kanit', sans-serif" font-size="15" font-weight="700" fill="#0F1729">ระดับความเข้มข้น (Escalation Ladder)</text>
+  <g id="EscalationSlider">
+    <rect x="20" y="354" width="353" height="48" rx="14" fill="#FFFFFF" stroke="#EDF0F5"/>
+    
+    <!-- 4 Steps -->
+    <rect x="24" y="358" width="82" height="40" rx="10" fill="#E4F8F1"/>
+    <text x="65" y="383" font-family="'Prompt', sans-serif" font-size="12" font-weight="700" fill="#0FBF7F" text-anchor="middle">🌿 นุ่มนวล</text>
+
+    <text x="151" y="383" font-family="'Prompt', sans-serif" font-size="12" fill="#9AA3B2" text-anchor="middle">😂 แซวเล่น</text>
+    <text x="242" y="383" font-family="'Prompt', sans-serif" font-size="12" fill="#9AA3B2" text-anchor="middle">⚡ ตรงๆ</text>
+    <text x="332" y="383" font-family="'Prompt', sans-serif" font-size="12" fill="#9AA3B2" text-anchor="middle">🔥 ด่วนมาก</text>
+  </g>
+
+  <!-- AI Script Box & Prompt Chips -->
+  <text x="24" y="428" font-family="'Kanit', sans-serif" font-size="15" font-weight="700" fill="#0F1729">บทพูดที่ AI สร้าง (Gemini 3.6 Flash)</text>
+
+  <!-- AI Trigger Chips -->
+  <g id="AiChips">
+    <rect x="20" y="440" width="108" height="32" rx="10" fill="#FDF2F8" stroke="#EC4899" stroke-width="1.5"/>
+    <text x="74" y="461" font-family="'Prompt', sans-serif" font-size="12" font-weight="700" fill="#EC4899" text-anchor="middle">✨ AI เขียนใหม่</text>
+
+    <rect x="136" y="440" width="86" height="32" rx="10" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="179" y="461" font-family="'Prompt', sans-serif" font-size="12" font-weight="500" fill="#4B5563" text-anchor="middle">😂 ใส่มุกตลก</text>
+
+    <rect x="230" y="440" width="86" height="32" rx="10" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="273" y="461" font-family="'Prompt', sans-serif" font-size="12" font-weight="500" fill="#4B5563" text-anchor="middle">🙏 สุภาพขึ้น</text>
+  </g>
+
+  <!-- Script Text Card -->
+  <g id="ScriptCard" filter="url(#shadow-s6)">
+    <rect x="20" y="484" width="353" height="136" rx="20" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="38" y="516" font-family="'Prompt', sans-serif" font-size="14" font-weight="500" fill="#0F1729" width="317">
+      "สวัสดีค่าคุณมิ้นท์ รบกวนโอนค่าราเมงฮาจิบัง
+    </text>
+    <text x="38" y="540" font-family="'Prompt', sans-serif" font-size="14" font-weight="500" fill="#0F1729">
+      ยอด 173 บาท ให้ป๊อปด้วยนะคะ กดลิงก์ฟังเสียง
+    </text>
+    <text x="38" y="564" font-family="'Prompt', sans-serif" font-size="14" font-weight="500" fill="#0F1729">
+      และสแกนพร้อมเพย์ได้ทันทีเลยน้า ขอบคุณค่า 😊"
+    </text>
+    
+    <line x1="38" y1="580" x2="355" y2="580" stroke="#F1F5F9" stroke-width="1"/>
+    <text x="38" y="604" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2">ความยาว 12 วินาที • เสียงสังเคราะห์ ElevenLabs AI</text>
+  </g>
+
+  <!-- Audio Waveform Preview Player -->
+  <g id="AudioPreview" filter="url(#shadow-s6)">
+    <rect x="20" y="632" width="353" height="88" rx="20" fill="#0F1729"/>
+    
+    <!-- Play Button -->
+    <circle cx="56" cy="676" r="22" fill="#EC4899"/>
+    <polygon points="52,668 52,684 66,676" fill="#FFFFFF"/>
+
+    <!-- Simulated Waveform Bars -->
+    <g transform="translate(90, 660)">
+      <rect x="0" y="12" width="4" height="8" rx="2" fill="#EC4899"/>
+      <rect x="8" y="8" width="4" height="16" rx="2" fill="#EC4899"/>
+      <rect x="16" y="2" width="4" height="28" rx="2" fill="#EC4899"/>
+      <rect x="24" y="6" width="4" height="20" rx="2" fill="#EC4899"/>
+      <rect x="32" y="10" width="4" height="12" rx="2" fill="#EC4899"/>
+      <rect x="40" y="0" width="4" height="32" rx="2" fill="#EC4899"/>
+      <rect x="48" y="4" width="4" height="24" rx="2" fill="#EC4899"/>
+      <rect x="56" y="12" width="4" height="8" rx="2" fill="#64748B"/>
+      <rect x="64" y="6" width="4" height="20" rx="2" fill="#64748B"/>
+      <rect x="72" y="2" width="4" height="28" rx="2" fill="#64748B"/>
+      <rect x="80" y="10" width="4" height="12" rx="2" fill="#64748B"/>
+      <rect x="88" y="4" width="4" height="24" rx="2" fill="#64748B"/>
+      <rect x="96" y="8" width="4" height="16" rx="2" fill="#64748B"/>
+      <rect x="104" y="12" width="4" height="8" rx="2" fill="#64748B"/>
+      <rect x="112" y="6" width="4" height="20" rx="2" fill="#64748B"/>
+      <rect x="120" y="2" width="4" height="28" rx="2" fill="#64748B"/>
+      <rect x="128" y="10" width="4" height="12" rx="2" fill="#64748B"/>
+      <rect x="136" y="8" width="4" height="16" rx="2" fill="#64748B"/>
+    </g>
+
+    <text x="270" y="682" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600" fill="#F8FAFC">0:04 / 0:12</text>
+  </g>
+
+  <!-- Bottom CTA Bar -->
+  <g id="BottomAction">
+    <rect x="0" y="734" width="393" height="118" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <rect x="20" y="750" width="353" height="52" rx="16" fill="url(#ai-grad-s6)"/>
+    <text x="196" y="782" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">🔊 ส่งเสียงทวง AI ให้มิ้นท์ทาง LINE ➔</text>
+    <rect x="129" y="838" width="135" height="5" rx="2.5" fill="#0F1729"/>
+  </g>
+</svg>

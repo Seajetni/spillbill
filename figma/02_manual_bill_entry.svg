@@ -1,0 +1,125 @@
+<svg width="393" height="852" viewBox="0 0 393 852" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow-card-s2" x="-4" y="0" width="401" height="860" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F1729" flood-opacity="0.06"/>
+    </filter>
+    <linearGradient id="btn-grad-s2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D6BFF"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="393" height="852" rx="44" fill="#F5F7FA"/>
+
+  <!-- Status Bar & Dynamic Island -->
+  <rect x="131" y="11" width="131" height="35" rx="17.5" fill="#000000"/>
+  <text x="36" y="34" font-family="'Prompt', sans-serif" font-size="15" font-weight="600" fill="#0F1729">9:41</text>
+  <path d="M340 24h18v10h-18z" rx="3" stroke="#0F1729" stroke-width="2" fill="none"/>
+  <rect x="342" y="26" width="12" height="6" rx="1.5" fill="#0F1729"/>
+  <path d="M359 27v4" stroke="#0F1729" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- App Bar -->
+  <g id="AppBar">
+    <rect x="20" y="60" width="40" height="40" rx="12" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <path d="M43 75l-5 5 5 5" stroke="#0F1729" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <text x="196" y="86" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#0F1729" text-anchor="middle">กรอกรายละเอียดบิล</text>
+    
+    <text x="373" y="85" font-family="'Prompt', sans-serif" font-size="14" font-weight="500" fill="#9AA3B2" text-anchor="end">ยกเลิก</text>
+  </g>
+
+  <!-- Title Input & Emoji Card -->
+  <g id="TitleSection" filter="url(#shadow-card-s2)">
+    <rect x="20" y="118" width="353" height="124" rx="20" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="38" y="144" font-family="'Prompt', sans-serif" font-size="12" font-weight="500" fill="#9AA3B2">ชื่อบิล / ร้านค้า</text>
+    
+    <!-- Title Input -->
+    <rect x="38" y="154" width="317" height="44" rx="12" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="50" y="181" font-family="'Prompt', sans-serif" font-size="15" font-weight="600" fill="#0F1729">ราเมงฮาจิบัง สยามพารากอน</text>
+
+    <!-- Category Emojis -->
+    <rect x="38" y="206" width="34" height="26" rx="8" fill="#EAF0FF" stroke="#2D6BFF"/>
+    <text x="55" y="224" font-size="14" text-anchor="middle">🍜</text>
+
+    <rect x="78" y="206" width="30" height="26" rx="8" fill="#F8FAFC"/>
+    <text x="93" y="224" font-size="14" text-anchor="middle">☕</text>
+
+    <rect x="114" y="206" width="30" height="26" rx="8" fill="#F8FAFC"/>
+    <text x="129" y="224" font-size="14" text-anchor="middle">🍻</text>
+
+    <rect x="150" y="206" width="30" height="26" rx="8" fill="#F8FAFC"/>
+    <text x="165" y="224" font-size="14" text-anchor="middle">🏠</text>
+
+    <rect x="186" y="206" width="30" height="26" rx="8" fill="#F8FAFC"/>
+    <text x="201" y="224" font-size="14" text-anchor="middle">🚗</text>
+
+    <rect x="222" y="206" width="30" height="26" rx="8" fill="#F8FAFC"/>
+    <text x="237" y="224" font-size="14" text-anchor="middle">🛒</text>
+  </g>
+
+  <!-- Payer & Date Selectors -->
+  <g id="PayerDateSection">
+    <rect x="20" y="254" width="170" height="66" rx="16" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="34" y="276" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2">ผู้สำรองจ่าย</text>
+    <text x="34" y="302" font-family="'Prompt', sans-serif" font-size="14" font-weight="600" fill="#0F1729">ป๊อป (ฉันเอง) 👨‍💻</text>
+
+    <rect x="203" y="254" width="170" height="66" rx="16" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="217" y="276" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2">วันที่จัดกิจกรรม</text>
+    <text x="217" y="302" font-family="'Prompt', sans-serif" font-size="14" font-weight="600" fill="#0F1729">2 ต.ค. 2569 📅</text>
+  </g>
+
+  <!-- Items List Header -->
+  <text x="24" y="348" font-family="'Kanit', sans-serif" font-size="17" font-weight="700" fill="#0F1729">รายการสั่งซื้อ (4 รายการ)</text>
+  
+  <!-- Items Container -->
+  <g id="ItemsList" filter="url(#shadow-card-s2)">
+    <rect x="20" y="362" width="353" height="226" rx="20" fill="#FFFFFF" stroke="#EDF0F5"/>
+    
+    <!-- Item 1 -->
+    <text x="38" y="394" font-family="'Prompt', sans-serif" font-size="14" font-weight="500" fill="#0F1729">ราเมนต้มยำชาชูเมน</text>
+    <text x="38" y="412" font-family="'Prompt', sans-serif" font-size="12" fill="#9AA3B2">฿190.00 x 2</text>
+    <text x="355" y="403" font-family="'Prompt', sans-serif" font-size="15" font-weight="700" fill="#0F1729" text-anchor="end">฿380.00</text>
+    <line x1="38" y1="424" x2="355" y2="424" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- Item 2 -->
+    <text x="38" y="448" font-family="'Prompt', sans-serif" font-size="14" font-weight="500" fill="#0F1729">เกี๊ยวซ่าซิกเนเจอร์ (6 ชิ้น)</text>
+    <text x="38" y="466" font-family="'Prompt', sans-serif" font-size="12" fill="#9AA3B2">฿120.00 x 1</text>
+    <text x="355" y="457" font-family="'Prompt', sans-serif" font-size="15" font-weight="700" fill="#0F1729" text-anchor="end">฿120.00</text>
+    <line x1="38" y1="478" x2="355" y2="478" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- Item 3 -->
+    <text x="38" y="502" font-family="'Prompt', sans-serif" font-size="14" font-weight="500" fill="#0F1729">ชาเขียวข้าวคั่วรีฟิล</text>
+    <text x="38" y="520" font-family="'Prompt', sans-serif" font-size="12" fill="#9AA3B2">฿45.00 x 3</text>
+    <text x="355" y="511" font-family="'Prompt', sans-serif" font-size="15" font-weight="700" fill="#0F1729" text-anchor="end">฿135.00</text>
+    <line x1="38" y1="532" x2="355" y2="532" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- Add Item Button -->
+    <rect x="38" y="546" width="317" height="32" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+    <text x="196" y="567" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#2D6BFF" text-anchor="middle">+ เพิ่มรายการอาหารใหม่</text>
+  </g>
+
+  <!-- Tax & Service Charge Card -->
+  <g id="TaxCard" filter="url(#shadow-card-s2)">
+    <rect x="20" y="600" width="353" height="114" rx="20" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="38" y="626" font-family="'Prompt', sans-serif" font-size="13" fill="#4B5563">ภาษีมูลค่าเพิ่ม VAT (7%)</text>
+    <text x="355" y="626" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#0F1729" text-anchor="end">+฿44.45</text>
+
+    <text x="38" y="654" font-family="'Prompt', sans-serif" font-size="13" fill="#4B5563">ค่าบริการ Service Charge (10%)</text>
+    <text x="355" y="654" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#0F1729" text-anchor="end">+฿63.50</text>
+
+    <text x="38" y="682" font-family="'Prompt', sans-serif" font-size="13" fill="#E5484D">ส่วนลดคูปองสมาชิกร้าน</text>
+    <text x="355" y="682" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#E5484D" text-anchor="end">-฿50.00</text>
+  </g>
+
+  <!-- Bottom CTA Bar -->
+  <g id="BottomAction">
+    <rect x="0" y="734" width="393" height="118" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="24" y="764" font-family="'Prompt', sans-serif" font-size="12" fill="#9AA3B2">ยอดสุทธิรวมทั้งสิ้น</text>
+    <text x="24" y="792" font-family="'Kanit', sans-serif" font-size="24" font-weight="800" fill="#0F1729">฿692.95</text>
+
+    <!-- Next Button -->
+    <rect x="180" y="750" width="193" height="52" rx="16" fill="url(#btn-grad-s2)"/>
+    <text x="276" y="782" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">เลือกวิธีหารบิล ➔</text>
+    <rect x="129" y="838" width="135" height="5" rx="2.5" fill="#0F1729"/>
+  </g>
+</svg>

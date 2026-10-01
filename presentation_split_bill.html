@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SplitBill - Smart Bill Splitting & AI Voice Nudge App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Prompt:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090d16;
+      --bg-card: rgba(22, 29, 49, 0.75);
+      --bg-card-border: rgba(255, 255, 255, 0.12);
+      --accent-primary: #6366f1;
+      --accent-secondary: #ec4899;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-heading: 'Kanit', sans-serif;
+      --font-body: 'Prompt', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    /* Ambient background glow */
+    .ambient-glow {
+      position: fixed;
+      top: -20%;
+      left: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(236, 72, 153, 0.08) 50%, transparent 70%);
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+      animation: floatGlow 18s ease-in-out infinite alternate;
+    }
+
+    .ambient-glow-2 {
+      position: fixed;
+      bottom: -20%;
+      right: -10%;
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, rgba(16, 185, 129, 0.08) 50%, transparent 70%);
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+      animation: floatGlow 14s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, 40px) scale(1.1); }
+    }
+
+    /* Presentation Header */
+    header {
+      height: 60px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(9, 13, 22, 0.8);
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+
+    .header-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .badge-platform {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #a5b4fc;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-ctrl {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: all 0.2s;
+    }
+
+    .btn-ctrl:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Main Presentation Stage */
+    main {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .slides-container {
+      width: 100%;
+      max-width: 1280px;
+      height: 100%;
+      max-height: 720px;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.96) translateY(20px);
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: 24px;
+      padding: 48px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1) translateY(0);
+    }
+
+    /* Typography & Core Elements */
+    .slide-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-cyan);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .slide-title {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #ffffff 40%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 900px;
+      margin-bottom: 32px;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      height: 100%;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      height: 100%;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(99, 102, 241, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #c7d2fe;
+    }
+
+    .feature-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .feature-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Hero / Slide 1 Special */
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      color: #f472b6;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 4rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff 20%, #a5b4fc 60%, #f472b6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 1.35rem;
+      color: #cbd5e1;
+      max-width: 760px;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .hero-tag-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 18px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Interactive Calculator Demo */
+    .demo-box {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .demo-input-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .demo-input-row label {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .demo-input {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 6px 12px;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      width: 140px;
+      text-align: right;
+    }
+
+    .pill-select {
+      display: flex;
+      gap: 6px;
+    }
+
+    .pill-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pill-btn.active {
+      background: var(--accent-primary);
+      border-color: var(--accent-primary);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .result-badge {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .result-val {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: #34d399;
+    }
+
+    /* Waveform visualizer mockup */
+    .waveform {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 36px;
+      justify-content: center;
+    }
+
+    .wave-bar {
+      width: 4px;
+      background: var(--accent-secondary);
+      border-radius: 2px;
+      height: 10px;
+      animation: wavePulse 1.2s infinite ease-in-out;
+    }
+
+    @keyframes wavePulse {
+      0%, 100% { height: 6px; opacity: 0.4; }
+      50% { height: 32px; opacity: 1; }
+    }
+
+    /* Footer / Progress Bar */
+    footer {
+      height: 60px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(9, 13, 22, 0.8);
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+
+    .progress-bar-container {
+      flex: 1;
+      max-width: 400px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 0 24px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+      transition: width 0.3s ease;
+    }
+
+    .nav-hints {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .key-hint {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #fff;
+    }
+
+    /* Architecture diagram nodes */
+    .arch-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .arch-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .arch-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Persona cards */
+    .persona-card {
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .persona-card.active, .persona-card:hover {
+      border-color: var(--accent-secondary);
+      background: rgba(236, 72, 153, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow"></div>
+  <div class="ambient-glow-2"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">💸</div>
+      <span>SplitBill Presentation</span>
+    </div>
+
+    <div class="header-info">
+      <div class="badge-platform">
+        <span>🖥️</span> Windows App & Multi-Platform
+      </div>
+      <div class="deck-controls">
+        <a href="figma/figma_simulator.html" target="_blank" class="btn-ctrl" style="background: rgba(255, 255, 255, 0.08); color: #38bdf8; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-weight: 500; border: 1px solid rgba(56, 189, 248, 0.3); padding: 6px 12px; border-radius: 8px;">❖ ดู Figma Design</a>
+        <a href="SplitBill_Setup.exe" download="SplitBill_Setup.exe" class="btn-ctrl" style="background: linear-gradient(135deg, #6366f1, #ec4899); color: white; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-weight: 500; border: none; padding: 6px 14px; border-radius: 8px;">⚡ โหลดแอป .exe</a>
+        <button class="btn-ctrl" onclick="prevSlide()">◀ ก่อนหน้า</button>
+        <button class="btn-ctrl" onclick="nextSlide()">ถัดไป ▶</button>
+        <button class="btn-ctrl" onclick="toggleFullScreen()">⛶ เต็มจอ</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stage -->
+  <main>
+    <div class="slides-container">
+
+      <!-- SLIDE 1: Title / Hero -->
+      <section class="slide active" id="slide-1">
+        <div class="hero-content">
+          <div class="hero-badge">
+            ✨ Flutter 3.47 Desktop & Mobile Solution
+          </div>
+          <h1 class="hero-title">SplitBill App</h1>
+          <p class="hero-sub">
+            แอปพลิเคชันจัดการหารบิล ติดตามยอดหนี้ และระบบเสียงทวงหนี้ AI อัจฉริยะ<br>
+            <span style="color: var(--accent-cyan);">"เปลี่ยนเรื่องเงินที่น่ากระอักกระอ่วนใจ ให้กลายเป็นเรื่องง่ายและเป็นกันเอง"</span>
+          </p>
+          <div class="hero-tags">
+            <div class="hero-tag-item"><span>🧮</span> หารบิลแม่นยำระดับเศษสตางค์</div>
+            <div class="hero-tag-item"><span>⚡</span> PromptPay QR & Deep Link ธนาคาร</div>
+            <div class="hero-tag-item"><span>🎙️</span> AI Voice Nudge & Audio Studio</div>
+            <div class="hero-tag-item"><span>🌐</span> Zero-Install Web Landing (Vercel)</div>
+            <div class="hero-tag-item"><span>💻</span> Windows Standalone Release</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: Problem Statement -->
+      <section class="slide" id="slide-2">
+        <div class="slide-tag">01. The Problem</div>
+        <h2 class="slide-title">ทำไมการหารเงินกับเพื่อนถึงเป็น "เรื่องยาก"?</h2>
+        <p class="slide-subtitle">ปัญหาคลาสสิกของคนออกเงินก่อน ที่เจอกันแทบทุกโต๊ะอาหารและทุกทริป</p>
+
+        <div class="grid-3">
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(239, 68, 68, 0.15); color: #f87171;">🤦‍♂️</div>
+            <h3 class="feature-title">ทวงยาก กระอักกระอ่วนใจ</h3>
+            <p class="feature-desc">ไม่กล้าทวง กลัวเสียมารยาทหรือดูเป็นคนงก เพื่อนบางคนไม่ได้ตั้งใจเบี้ยว แต่ "ลืมโอน" พอไม่ทวงก็กลายเป็นหนี้สูญ</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">📑</div>
+            <h3 class="feature-title">คำนวณซับซ้อน ปวดหัว</h3>
+            <p class="feature-desc">บางคนกินเนื้อ บางคนไม่กินแอลกอฮอล์ แถมยังมี Service Charge 10% และ VAT 7% พร้อมเศษสตางค์ที่ไม่ลงตัว</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa;">🏦</div>
+            <h3 class="feature-title">ขั้นตอนโอนยุ่งยาก</h3>
+            <p class="feature-desc">ต้องส่งเลขบัญชี สลับแอปไปกรอกยอดเงิน แคปสลิปส่งเข้าแชท พอคนเยอะ สลิปปนกันจนตรวจยอดไม่ถูก</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: The Solution -->
+      <section class="slide" id="slide-3">
+        <div class="slide-tag">02. The Solution</div>
+        <h2 class="slide-title">SplitBill: ทุกคำตอบในแอปเดียว</h2>
+        <p class="slide-subtitle">ออกแบบฟังก์ชันตั้งแต่การเริ่มเปิดบิล จนถึงเพื่อนสแกนจ่ายเงินครบ 100%</p>
+
+        <div class="grid-4" style="margin-top: 10px;">
+          <div class="feature-card">
+            <div class="feature-icon">📝</div>
+            <h3 class="feature-title">สร้างบิลยืดหยุ่น</h3>
+            <p class="feature-desc">สร้างบิลว่าง กรอกเอง หรือทำซ้ำจากบิลเดิม ไม่จำกัดจำนวนคนในกลุ่ม</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">⚖️</div>
+            <h3 class="feature-title">หารได้ 2 รูปแบบ</h3>
+            <p class="feature-desc">เลือกได้ทั้งหารเท่ากัน (Equally) หรือหารตามเมนูจริงที่กิน (By Item)</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3 class="feature-title">AI Voice Nudge</h3>
+            <p class="feature-desc">สร้างเสียงทวงหนี้ AI หลากบุคลิก ส่งเป็นไฟล์เสียงหรือลิงก์เข้า LINE</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3 class="feature-title">เพื่อนไม่ต้องลงแอป</h3>
+            <p class="feature-desc">เพื่อนเปิดลิงก์เว็บ ฟังเสียง สแกน QR หรือกดเปิดแอปธนาคารจ่ายได้ทันที</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px; padding: 18px 24px; background: rgba(99, 102, 241, 0.1); border-radius: 16px; border: 1px solid rgba(99, 102, 241, 0.25); display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <strong style="color: #a5b4fc; font-size: 1.05rem;">🎯 ผลลัพธ์ที่ได้:</strong>
+            <span style="color: #cbd5e1; margin-left: 8px;">เพื่อนโอนไวขึ้น 3 เท่า เจ้าหนี้ไม่เครียด ความสัมพันธ์ในกลุ่มยังแฮปปี้!</span>
+          </div>
+          <span style="font-size: 1.5rem;">🎉</span>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: Bill Splitting & Math Engine (Interactive) -->
+      <section class="slide" id="slide-4">
+        <div class="slide-tag">03. Core Feature: Math Engine</div>
+        <h2 class="slide-title">ระบบคำนวณบิลและเศษสตางค์อัจฉริยะ</h2>
+        <p class="slide-subtitle">แก้ปัญหาเศษสตางค์ไม่ลงตัวด้วย 3 กลยุทธ์ตามมาตรฐานการเงิน</p>
+
+        <div class="grid-2">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="feature-card" style="padding: 16px;">
+              <h4 style="color: #67e8f9; margin-bottom: 6px;">1. คนสำรองจ่ายรับผิดชอบเศษ (Payer Absorbs)</h4>
+              <p class="feature-desc">คนจ่ายหลักรับเศษไป เพื่อนจ่ายเป็นจำนวนถ้วน เช่น 33.33 บาท</p>
+            </div>
+            <div class="feature-card" style="padding: 16px;">
+              <h4 style="color: #a78bfa; margin-bottom: 6px;">2. กระจายเศษสตางค์ (Distribute Evenly)</h4>
+              <p class="feature-desc">แจกเศษ 1 สตางค์ให้คนแรก ๆ ในลิสต์ เพื่อให้ยอดรวมตรงเป๊ะ 100%</p>
+            </div>
+            <div class="feature-card" style="padding: 16px;">
+              <h4 style="color: #f472b6; margin-bottom: 6px;">3. ปัดเป็นจำนวนเต็มบาท (Round to Baht)</h4>
+              <p class="feature-desc">ปัดเศษขึ้นเป็นจำนวนเต็ม สะดวกสบายไม่ต้องโอนเศษสตางค์</p>
+            </div>
+          </div>
+
+          <!-- Interactive Calculator Widget -->
+          <div class="demo-box">
+            <h3 style="font-family: var(--font-heading); color: #fff;">🧮 ทดลองคำนวณบิลจริง</h3>
+            
+            <div class="demo-input-row">
+              <label>ยอดรวมบิล (บาท):</label>
+              <input type="number" id="calcTotal" class="demo-input" value="1000" oninput="runDemoCalc()">
+            </div>
+
+            <div class="demo-input-row">
+              <label>จำนวนเพื่อนที่หาร (คน):</label>
+              <input type="number" id="calcPeople" class="demo-input" value="3" min="1" max="50" oninput="runDemoCalc()">
+            </div>
+
+            <div class="demo-input-row">
+              <label>ภาษี / Service Charge:</label>
+              <div class="pill-select">
+                <button class="pill-btn active" id="btnVat0" onclick="setVat(0)">ไม่มี</button>
+                <button class="pill-btn" id="btnVat7" onclick="setVat(7)">VAT 7%</button>
+                <button class="pill-btn" id="btnVat17" onclick="setVat(17.7)">+10%+7%</button>
+              </div>
+            </div>
+
+            <div class="result-badge">
+              <div style="font-size: 0.85rem; color: #a7f3d0; margin-bottom: 4px;">ยอดเฉลี่ยต่อคน</div>
+              <div class="result-val" id="calcResult">333.33 ฿</div>
+              <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 4px;" id="calcDetail">ยอดสุทธิ 1,000.00 บาท หาร 3 คน</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: Seamless Payment & Banking -->
+      <section class="slide" id="slide-5">
+        <div class="slide-tag">04. Core Feature: Payments</div>
+        <h2 class="slide-title">เชื่อมต่อ PromptPay และแอปธนาคารไทย</h2>
+        <p class="slide-subtitle">จ่ายเงินได้ทันทีใน 10 วินาที ผ่าน Deep Link และ Dynamic QR Code</p>
+
+        <div class="grid-3">
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">📲</div>
+            <h3 class="feature-title">PromptPay QR จริง</h3>
+            <p class="feature-desc">สร้าง QR Code มาตรฐาน EMVCo ผูกเบอร์หรือเลขบัตรประชาชนของเจ้าหนี้จริง พร้อมระบุยอดเงินตรงเป๊ะ</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">🔗</div>
+            <h3 class="feature-title">Deep Link ธนาคาร</h3>
+            <p class="feature-desc">แตะครั้งเดียวเปิดแอปธนาคารในเครื่องเพื่อนทันที รองรับทั้ง <strong>SCB Easy, K PLUS, ttb touch, KMA</strong></p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(236, 72, 153, 0.15); color: #f472b6;">🧾</div>
+            <h3 class="feature-title">บันทึกรูป & แนบสลิป</h3>
+            <p class="feature-desc">เซฟรูป QR ลง Photo Library อัตโนมัติ พร้อมระบบให้อัปโหลดภาพสลิปตรวจสอบความถูกต้อง</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 28px; display: flex; align-items: center; justify-content: center; gap: 24px; background: rgba(255, 255, 255, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08);">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.5rem;">🟢</span>
+            <span style="font-size: 0.95rem; font-weight: 600;">K PLUS</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.5rem;">🟣</span>
+            <span style="font-size: 0.95rem; font-weight: 600;">SCB Easy</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.5rem;">🔵</span>
+            <span style="font-size: 0.95rem; font-weight: 600;">ttb touch</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.5rem;">🟡</span>
+            <span style="font-size: 0.95rem; font-weight: 600;">KMA Krungsri</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: AI Voice Nudge (Signature Feature) -->
+      <section class="slide" id="slide-6">
+        <div class="slide-tag">05. Signature Feature: AI Voice Nudge</div>
+        <h2 class="slide-title">เสียงทวงหนี้ AI หลากบุคลิก</h2>
+        <p class="slide-subtitle">ผสานพลัง Google Gemini AI และ Text-to-Speech สร้างบทพูดทวงเงินตามบริบท</p>
+
+        <div class="grid-2">
+          <!-- Personas -->
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="persona-card active" onclick="selectPersona(this, 'friend')">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="color: #fff;">🍻 เพื่อนสนิทสายชิล (Friendly)</strong>
+                <span style="font-size: 0.8rem; color: #a5b4fc;">ระดับ 1</span>
+              </div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">"เห้ยเพื่อน มื้อชาบูเมื่อวาน ยอด 350 บาท ว่างๆ กดโอนให้หน่อยนะ จะเอาไปสั่งชานม!"</p>
+            </div>
+
+            <div class="persona-card" onclick="selectPersona(this, 'polite')">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="color: #fff;">🙏 สุภาพเกรงใจ (Polite & Formal)</strong>
+                <span style="font-size: 0.8rem; color: #6ee7b7;">ระดับ 2</span>
+              </div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">"ขออนุญาตส่งสรุปค่าใช้จ่ายมื้อเที่ยงครับ ยอด 240 บาท สะดวกแล้วรบกวนโอนได้เลยครับ ขอบคุณครับ"</p>
+            </div>
+
+            <div class="persona-card" onclick="selectPersona(this, 'funny')">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="color: #fff;">😂 สายฮาเล่นมุก (Meme & Rapper)</strong>
+                <span style="font-size: 0.8rem; color: #f472b6;">ระดับ 3</span>
+              </div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">"กินอย่างราชา แต่เงินยังไม่มาสักบาท โอนเถอะเพื่อนรัก ก่อนข้าจะกินแกลบแทนข้าว!"</p>
+            </div>
+
+            <div class="persona-card" onclick="selectPersona(this, 'strict')">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <strong style="color: #fff;">⚡ สายโหดทวงเด็ดขาด (Bossy & Direct)</strong>
+                <span style="font-size: 0.8rem; color: #f87171;">ระดับ 4</span>
+              </div>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">"แจ้งเตือนรอบสุดท้าย! ยอดค้าง 500 บาท ครบกำหนดแล้ว โอนทันที เดี๋ยวนี้ เลยครับผม!"</p>
+            </div>
+          </div>
+
+          <!-- Studio Player Mockup -->
+          <div class="demo-box" style="justify-content: center; align-items: center; text-align: center;">
+            <div style="width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary)); display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);">
+              🎙️
+            </div>
+            
+            <h3 id="currentPersonaTitle" style="color: #fff; margin-top: 8px;">เพื่อนสนิทสายชิล</h3>
+            <div class="waveform" style="margin: 12px 0;">
+              <div class="wave-bar" style="animation-delay: 0.1s;"></div>
+              <div class="wave-bar" style="animation-delay: 0.3s;"></div>
+              <div class="wave-bar" style="animation-delay: 0.2s;"></div>
+              <div class="wave-bar" style="animation-delay: 0.5s;"></div>
+              <div class="wave-bar" style="animation-delay: 0.15s;"></div>
+              <div class="wave-bar" style="animation-delay: 0.4s;"></div>
+              <div class="wave-bar" style="animation-delay: 0.25s;"></div>
+            </div>
+
+            <p id="currentPersonaSpeech" style="font-size: 0.95rem; color: #cbd5e1; max-width: 380px; line-height: 1.6; font-style: italic;">
+              "เห้ยเพื่อน มื้อชาบูเมื่อวาน ยอด 350 บาท ว่างๆ กดโอนให้หน่อยนะ จะเอาไปสั่งชานม!"
+            </p>
+
+            <div style="display: flex; gap: 10px; margin-top: 16px;">
+              <button class="btn-ctrl" style="background: var(--accent-secondary); border-color: var(--accent-secondary); font-weight: 600;" onclick="playVoiceSample()">
+                ▶ ฟังเสียงตัวอย่าง
+              </button>
+              <button class="btn-ctrl" onclick="generateAiText()">
+                ✨ ให้ AI แต่งใหม่
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7: Zero-Install Web Landing -->
+      <section class="slide" id="slide-7">
+        <div class="slide-tag">06. Receiver Experience</div>
+        <h2 class="slide-title">Zero-Install Web Landing (Vercel + Cloud)</h2>
+        <p class="slide-subtitle">เพื่อนไม่ต้องโหลดแอปแม้แต่คนเดียว! ส่งลิงก์เข้า LINE แล้วเปิดฟังเสียงได้ทันที</p>
+
+        <div class="grid-2">
+          <div style="display: flex; flex-direction: column; justify-content: center; gap: 18px;">
+            <div class="feature-card">
+              <h4 style="color: #38bdf8;">🌐 Hosted on Vercel Serverless</h4>
+              <p class="feature-desc">สถาปัตยกรรม High-Performance Cloud API โฮสต์บน Vercel รวดเร็วและโหลดหน้าเว็บได้ในเสี้ยววินาที</p>
+            </div>
+
+            <div class="feature-card">
+              <h4 style="color: #34d399;">🗄️ MongoDB Atlas Cloud</h4>
+              <p class="feature-desc">จัดเก็บข้อมูลบิล ไฟล์เสียง และสถานะชำระเงินแบบ Real-time ข้ามอุปกรณ์อย่างไร้รอยต่อ</p>
+            </div>
+
+            <div class="feature-card">
+              <h4 style="color: #f472b6;">💬 ส่งตรงเข้า LINE Chat</h4>
+              <p class="feature-desc">คลิกเดียวแชร์การ์ดยอดเงิน พร้อมไฟล์เสียง .m4a และลิงก์หน้าเว็บให้เพื่อนเปิดได้ทุกสมาร์ตโฟน</p>
+            </div>
+          </div>
+
+          <!-- Web preview screen frame -->
+          <div style="background: #111827; border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div style="font-size: 0.8rem; background: rgba(255, 255, 255, 0.08); padding: 4px 14px; border-radius: 999px; color: #94a3b8; font-family: var(--font-mono);">
+              https://spillbill.vercel.app/n/abc123xyz
+            </div>
+
+            <div style="font-size: 2.2rem; margin-top: 8px;">🍽️</div>
+            <h3 style="font-family: var(--font-heading); color: #fff;">มื้ออาหารญี่ปุ่น โอมากาเสะ</h3>
+            <div style="font-size: 2.4rem; font-weight: 700; color: #34d399; font-family: var(--font-mono);">
+              ฿ 1,250.00
+            </div>
+
+            <div style="width: 100%; max-width: 280px; padding: 12px; background: rgba(99, 102, 241, 0.15); border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.3);">
+              <div style="font-size: 0.85rem; color: #c7d2fe;">🔊 กดฟังเสียงทวงจากเพื่อน</div>
+              <div style="height: 6px; background: #6366f1; border-radius: 3px; margin-top: 8px; width: 65%;"></div>
+            </div>
+
+            <div style="display: flex; gap: 10px; width: 100%; max-width: 280px;">
+              <button class="btn-ctrl" style="flex: 1; background: #059669; border-color: #059669; font-weight: 600;">เปิดแอปธนาคาร</button>
+              <button class="btn-ctrl" style="flex: 1;">ดู QR Code</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8: Analytics & Export Engine -->
+      <section class="slide" id="slide-8">
+        <div class="slide-tag">07. Analytics & Reports</div>
+        <h2 class="slide-title">ระบบสรุปสถิติและส่งออกรายงาน</h2>
+        <p class="slide-subtitle">เห็นภาพรวมการใช้จ่ายตลอดทั้งเดือน พร้อม Export ไฟล์ CSV และ PDF ทันที</p>
+
+        <div class="grid-3">
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">📊</div>
+            <h3 class="feature-title">Donut Chart วิเคราะห์หมวดหมู่</h3>
+            <p class="feature-desc">จำแนกสัดส่วนค่าอาหาร, ท่องเที่ยว, ที่พัก, เดินทาง และจิปาถะ พร้อมยอดรวมสุทธิ</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">📗</div>
+            <h3 class="feature-title">ส่งออกไฟล์ Excel (CSV)</h3>
+            <p class="feature-desc">สร้างไฟล์ Spreadsheet ตารางรายการบิล พร้อมสูตรคำนวณ นำไปทำบัญชีต่อได้ง่ายดาย</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(239, 68, 68, 0.15); color: #f87171;">📕</div>
+            <h3 class="feature-title">เอกสารสรุปยอด PDF</h3>
+            <p class="feature-desc">สร้างใบเสร็จสรุปยอดกลุ่มฟอร์แมตสวยงาม พร้อมรายชื่อผู้ชำระแล้วและผู้ที่ยังค้างจ่าย</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9: System Architecture & Tech Stack -->
+      <section class="slide" id="slide-9">
+        <div class="slide-tag">08. Technical Architecture</div>
+        <h2 class="slide-title">โครงสร้างสถาปัตยกรรมและเทคโนโลยีที่ใช้</h2>
+        <p class="slide-subtitle">ผสาน Flutter Cross-Platform, C++ Native Windows Desktop, และ Serverless Cloud</p>
+
+        <div class="grid-4" style="margin-top: 10px;">
+          <div class="arch-card">
+            <div style="font-size: 2rem; margin-bottom: 6px;">📱</div>
+            <h4 class="arch-title">Frontend Framework</h4>
+            <p class="arch-desc"><strong>Flutter 3.47 + Dart 3.13</strong><br>Provider State Management, Material 3 Glassmorphism UI</p>
+          </div>
+
+          <div class="arch-card">
+            <div style="font-size: 2rem; margin-bottom: 6px;">💻</div>
+            <h4 class="arch-title">Windows Desktop</h4>
+            <p class="arch-desc"><strong>C++ Native Runner & CMake</strong><br>Visual Studio Community 2026, Standalone .exe with bundled engine</p>
+          </div>
+
+          <div class="arch-card">
+            <div style="font-size: 2rem; margin-bottom: 6px;">🧠</div>
+            <h4 class="arch-title">AI & Voice Engine</h4>
+            <p class="arch-desc"><strong>Google Gemini API</strong><br>ElevenLabs AI TTS + Flutter TTS Thai + Audio Record & Effects</p>
+          </div>
+
+          <div class="arch-card">
+            <div style="font-size: 2rem; margin-bottom: 6px;">☁️</div>
+            <h4 class="arch-title">Cloud Backend</h4>
+            <p class="arch-desc"><strong>Vercel Serverless</strong><br>Node.js Express API + MongoDB Atlas Database</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px; padding: 20px; background: rgba(15, 23, 42, 0.6); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08); font-family: var(--font-mono); font-size: 0.88rem; color: #94a3b8; display: flex; justify-content: space-around;">
+          <div>📁 lib/providers/split_bill_provider.dart</div>
+          <div>📁 lib/services/gemini_service.dart</div>
+          <div>📁 lib/services/audio_service.dart</div>
+          <div>📁 lib/utils/promptpay_qr.dart</div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10: Windows Application Release -->
+      <section class="slide" id="slide-10">
+        <div class="slide-tag">09. Deployment: Windows App</div>
+        <h2 class="slide-title">ความพร้อมของแอปพลิเคชันเวอร์ชัน Windows</h2>
+        <p class="slide-subtitle">คอมไพล์เป็นโปรแกรมเดสก์ท็อป Standalone รันลื่นไหลบน Windows 10 & 11 (64-bit)</p>
+
+        <div class="grid-2">
+          <div class="feature-card" style="justify-content: center;">
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 12px;">
+              <span style="font-size: 2.5rem;">🪟</span>
+              <div>
+                <h3 style="color: #fff; font-size: 1.4rem;">split_bill.exe</h3>
+                <span style="color: #34d399; font-size: 0.85rem; font-family: var(--font-mono);">● Release x64 Binary</span>
+              </div>
+            </div>
+            <ul style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.8; margin-left: 20px;">
+              <li>คอมไพล์ด้วย Visual Studio C++ Compiler</li>
+              <li>รองรับทั้งจอกว้าง จอสัมผัส และคีย์บอร์ดชอร์ตคัต</li>
+              <li>เชื่อมต่อ Native Audio API เล่นเสียงและอัดเสียงสมบูรณ์</li>
+              <li>ทำงานแบบ Standalone ไม่ต้องติดตั้ง Flutter บนเครื่องปลายทาง</li>
+            </ul>
+          </div>
+
+          <div class="demo-box" style="justify-content: center; gap: 14px;">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 0.95rem; color: #a5b4fc; font-weight: 600;">⚡ 1-Click Standalone Installer:</span>
+              <span style="font-size: 0.8rem; background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 2px 8px; border-radius: 6px;">11.4 MB (Single EXE)</span>
+            </div>
+            
+            <a href="SplitBill_Setup.exe" download="SplitBill_Setup.exe" style="display: flex; align-items: center; justify-content: center; gap: 12px; background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%); color: white; padding: 14px 20px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 1.05rem; box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4); text-align: center; transition: all 0.2s ease;">
+              <span>⬇️ ดาวน์โหลดตัวติดตั้ง SplitBill_Setup.exe (1-Click)</span>
+            </a>
+
+            <div style="font-size: 0.85rem; color: #94a3b8; line-height: 1.6;">
+              ✨ <strong>จุดเด่น 1-Click EXE:</strong><br>
+              • ดับเบิ้ลคลิกไฟล์เดียว ติดตั้งและเปิดแอปทันทีใน 1-2 วินาที<br>
+              • สร้างชอร์ตคัตบน Desktop และ Start Menu อัตโนมัติ<br>
+              • ไม่ต้องต่อเน็ต และไม่ต้องใช้สิทธิ์ Administrator (UAC)
+            </div>
+
+            <div style="padding: 10px 12px; background: rgba(16, 185, 129, 0.1); border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.25); color: #a7f3d0; font-size: 0.82rem;">
+              ✅ ที่อยู่ไฟล์พร้อมใช้งาน: <code style="color: #fff;">D:\code\split_bill\SplitBill_Setup.exe</code>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11: Summary & Next Steps -->
+      <section class="slide" id="slide-11">
+        <div class="slide-tag">10. Summary & Vision</div>
+        <h2 class="slide-title">ก้าวต่อไปของ SplitBill (Roadmap)</h2>
+        <p class="slide-subtitle">ยกระดับสู่แอปพลิเคชันระดับ Production และเตรียมพร้อมขึ้น Apple App Store</p>
+
+        <div class="grid-3">
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">🍎</div>
+            <h3 class="feature-title">Apple App Store Launch</h3>
+            <p class="feature-desc">Sign in with Apple, Account Deletion, Privacy Policy & Support URL พร้อมขึ้นสโตร์สากล</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(236, 72, 153, 0.15); color: #f472b6;">🕸️</div>
+            <h3 class="feature-title">Debt Simplification</h3>
+            <p class="feature-desc">อัลกอริทึมลดยอดหนี้ซ้ำซ้อนในกลุ่ม รวบยอดโอนให้เหลือจำนวนครั้งการโอนน้อยที่สุด</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(6, 182, 212, 0.15); color: #67e8f9;">🔔</div>
+            <h3 class="feature-title">APNs / FCM Push</h3>
+            <p class="feature-desc">ส่งแจ้งเตือนเด้งเข้ามือถือเพื่อนอัตโนมัติเมื่อมีบิลใหม่ และเมื่อเพื่อนชำระเงินเรียบร้อย</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 32px; text-align: center;">
+          <h3 style="font-family: var(--font-heading); font-size: 1.8rem; color: #fff;">ขอบคุณครับ | ถาม-ตอบ (Q&A)</h3>
+          <p style="color: var(--text-muted); font-size: 1rem; margin-top: 8px;">SplitBill — Smart Bill Splitting & Voice Nudge App</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer Navigation -->
+  <footer>
+    <div style="font-family: var(--font-mono); font-size: 0.9rem; color: #94a3b8;" id="slideIndicator">
+      Slide 1 / 11
+    </div>
+
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="nav-hints">
+      <span>กด <span class="key-hint">◀</span> <span class="key-hint">▶</span> หรือ <span class="key-hint">Space</span> เปลี่ยนสไลด์</span>
+      <span>กด <span class="key-hint">F</span> เต็มจอ</span>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 11;
+    let vatPercent = 0;
+
+    function showSlide(index) {
+      if (index < 1) index = 1;
+      if (index > totalSlides) index = totalSlides;
+
+      currentSlide = index;
+
+      document.querySelectorAll('.slide').forEach((s, idx) => {
+        if (idx + 1 === currentSlide) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+
+      document.getElementById('slideIndicator').innerText = `Slide ${currentSlide} / ${totalSlides}`;
+      document.getElementById('progressBar').style.width = `${((currentSlide - 1) / (totalSlides - 1)) * 100}%`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        showSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {});
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullScreen();
+      } else if (e.key === 'Home') {
+        showSlide(1);
+      } else if (e.key === 'End') {
+        showSlide(totalSlides);
+      }
+    });
+
+    // Touch Swipe support
+    let touchStartX = 0;
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    document.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) nextSlide();
+      if (touchEndX - touchStartX > 50) prevSlide();
+    }, false);
+
+    // Interactive Demo Calculator
+    function runDemoCalc() {
+      const totalRaw = parseFloat(document.getElementById('calcTotal').value) || 0;
+      const people = parseInt(document.getElementById('calcPeople').value) || 1;
+      
+      const totalWithVat = totalRaw * (1 + (vatPercent / 100));
+      const perPerson = totalWithVat / Math.max(1, people);
+
+      document.getElementById('calcResult').innerText = perPerson.toFixed(2) + ' ฿';
+      document.getElementById('calcDetail').innerText = 
+        `ยอดสุทธิ ${totalWithVat.toLocaleString('th-TH', {minimumFractionDigits: 2, maximumFractionDigits: 2})} บาท หาร ${people} คน`;
+    }
+
+    function setVat(val) {
+      vatPercent = val;
+      document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+      if (val === 0) document.getElementById('btnVat0').classList.add('active');
+      if (val === 7) document.getElementById('btnVat7').classList.add('active');
+      if (val > 10) document.getElementById('btnVat17').classList.add('active');
+      runDemoCalc();
+    }
+
+    // Interactive Persona Selector
+    const personas = {
+      friend: {
+        title: "เพื่อนสนิทสายชิล",
+        speech: "\"เห้ยเพื่อน มื้อชาบูเมื่อวาน ยอด 350 บาท ว่างๆ กดโอนให้หน่อยนะ จะเอาไปสั่งชานม!\""
+      },
+      polite: {
+        title: "สุภาพเกรงใจ",
+        speech: "\"ขออนุญาตส่งสรุปค่าใช้จ่ายมื้อเที่ยงครับ ยอด 240 บาท สะดวกแล้วรบกวนโอนได้เลยครับ ขอบคุณครับ\""
+      },
+      funny: {
+        title: "สายฮาเล่นมุก",
+        speech: "\"กินอย่างราชา แต่เงินยังไม่มาสักบาท โอนเถอะเพื่อนรัก ก่อนข้าจะกินแกลบแทนข้าว!\""
+      },
+      strict: {
+        title: "สายโหดทวงเด็ดขาด",
+        speech: "\"แจ้งเตือนรอบสุดท้าย! ยอดค้าง 500 บาท ครบกำหนดแล้ว โอนทันที เดี๋ยวนี้ เลยครับผม!\""
+      }
+    };
+
+    function selectPersona(card, type) {
+      document.querySelectorAll('.persona-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+
+      const data = personas[type];
+      document.getElementById('currentPersonaTitle').innerText = data.title;
+      document.getElementById('currentPersonaSpeech').innerText = data.speech;
+    }
+
+    function playVoiceSample() {
+      const speech = document.getElementById('currentPersonaSpeech').innerText.replace(/"/g, '');
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(speech);
+        utterance.lang = 'th-TH';
+        utterance.rate = 1.0;
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert("เบราว์เซอร์ไม่รองรับ Text-to-Speech");
+      }
+    }
+
+    function generateAiText() {
+      const phrases = [
+        "\"ก๊อกๆ ค่าข้าวเมื่อวานอย่าลืมโอนน้า พร้อมเพย์เบอร์เดิม รวยแล้วอย่าลืมเพื่อน!\"",
+        "\"บิลนี้พี่ออกให้ก่อน แต่ถ้าน้องไม่โอนคืน คืนนี้พี่จะไปเข้าฝัน!\"",
+        "\"สเต๊กอร่อยมั้ยเพื่อน? ถ้าอิ่มแล้วกดเปิดแอปธนาคารแล้วสแกนทีนึง จุ๊บๆ\"",
+        "\"เงินทองเป็นของนอกกาย แต่ค่าอาหารต้องจ่ายนะจ๊ะเพื่อนรัก!\""
+      ];
+      const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+      document.getElementById('currentPersonaSpeech').innerText = randomPhrase;
+    }
+
+    // Init
+    showSlide(1);
+    runDemoCalc();
+  </script>
+</body>
+</html>

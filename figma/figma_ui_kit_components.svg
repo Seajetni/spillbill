@@ -1,0 +1,192 @@
+<svg width="840" height="960" viewBox="0 0 840 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow-kit" x="-4" y="0" width="850" height="970" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F1729" flood-opacity="0.06"/>
+    </filter>
+    <linearGradient id="kit-primary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D6BFF"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+    <linearGradient id="kit-ai" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="kit-success" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0FBF7F"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="840" height="960" fill="#F8FAFC"/>
+
+  <!-- Title Header -->
+  <rect x="40" y="36" width="760" height="80" rx="16" fill="#0F1729"/>
+  <text x="70" y="72" font-family="'Kanit', sans-serif" font-size="22" font-weight="700" fill="#FFFFFF">SplitBill — Figma Component UI Kit & Design System</text>
+  <text x="70" y="96" font-family="'Prompt', sans-serif" font-size="13" fill="#94A3B8">รวมส่วนประกอบ Master Components สำหรับใช้งานใน Figma (Auto Layout Ready)</text>
+
+  <!-- SECTION 1: Buttons -->
+  <g id="SectionButtons" transform="translate(40, 140)">
+    <text x="0" y="20" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#0F1729">1. Buttons (ปุ่มสั่งการ)</text>
+    
+    <!-- Primary Button -->
+    <rect x="0" y="36" width="230" height="48" rx="14" fill="url(#kit-primary)"/>
+    <text x="115" y="66" font-family="'Kanit', sans-serif" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">ปุ่มหลัก (Primary CTA)</text>
+
+    <!-- AI Gradient Button -->
+    <rect x="250" y="36" width="230" height="48" rx="14" fill="url(#kit-ai)"/>
+    <text x="365" y="66" font-family="'Kanit', sans-serif" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">✨ AI Voice Button</text>
+
+    <!-- Success Button -->
+    <rect x="500" y="36" width="230" height="48" rx="14" fill="url(#kit-success)"/>
+    <text x="615" y="66" font-family="'Kanit', sans-serif" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">✓ ชำระเงินเสร็จสิ้น</text>
+
+    <!-- Secondary Tint Button -->
+    <rect x="0" y="96" width="230" height="44" rx="12" fill="#EAF0FF"/>
+    <text x="115" y="124" font-family="'Prompt', sans-serif" font-size="14" font-weight="600" fill="#2D6BFF" text-anchor="middle">ปุ่มรอง (Soft Tint)</text>
+
+    <!-- Danger Button -->
+    <rect x="250" y="96" width="230" height="44" rx="12" fill="#FEE2E2"/>
+    <text x="365" y="124" font-family="'Prompt', sans-serif" font-size="14" font-weight="600" fill="#E5484D" text-anchor="middle">ลบ / ยกเลิก (Danger)</text>
+
+    <!-- Outline Button -->
+    <rect x="500" y="96" width="230" height="44" rx="12" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="615" y="124" font-family="'Prompt', sans-serif" font-size="14" font-weight="500" fill="#4B5563" text-anchor="middle">ปุ่มเส้นขอบ (Outline)</text>
+  </g>
+
+  <!-- SECTION 2: Badges & Status Chips -->
+  <g id="SectionBadges" transform="translate(40, 310)">
+    <text x="0" y="20" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#0F1729">2. Status Badges & Chips (ป้ายสถานะ)</text>
+
+    <rect x="0" y="36" width="94" height="28" rx="8" fill="#E4F8F1"/>
+    <text x="47" y="55" font-family="'Prompt', sans-serif" font-size="12" font-weight="700" fill="#0FBF7F" text-anchor="middle">เขาติดเรา ✓</text>
+
+    <rect x="110" y="36" width="94" height="28" rx="8" fill="#FFF1E7"/>
+    <text x="157" y="55" font-family="'Prompt', sans-serif" font-size="12" font-weight="700" fill="#FF8A3D" text-anchor="middle">เราติดเขา ⚡</text>
+
+    <rect x="220" y="36" width="94" height="28" rx="8" fill="#FDF2F8"/>
+    <text x="267" y="55" font-family="'Prompt', sans-serif" font-size="12" font-weight="700" fill="#EC4899" text-anchor="middle">AI Active ✨</text>
+
+    <rect x="330" y="36" width="94" height="28" rx="8" fill="#EAF0FF"/>
+    <text x="377" y="55" font-family="'Prompt', sans-serif" font-size="12" font-weight="700" fill="#2D6BFF" text-anchor="middle">PromptPay 💳</text>
+
+    <rect x="440" y="36" width="94" height="28" rx="8" fill="#F1F5F9"/>
+    <text x="487" y="55" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#64748B" text-anchor="middle">รอชำระ ⏳</text>
+  </g>
+
+  <!-- SECTION 3: Member Avatar Chips -->
+  <g id="SectionAvatars" transform="translate(40, 420)">
+    <text x="0" y="20" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#0F1729">3. Member Avatars & Participant Cards</text>
+
+    <!-- Avatar 1: Pop -->
+    <rect x="0" y="36" width="160" height="60" rx="14" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <circle cx="32" cy="66" r="18" fill="#EAF0FF"/>
+    <text x="32" y="73" font-size="18" text-anchor="middle">👨‍💻</text>
+    <text x="60" y="60" font-family="'Prompt', sans-serif" font-size="13" font-weight="700" fill="#0F1729">ป๊อป (ฉันเอง)</text>
+    <text x="60" y="78" font-family="'Prompt', sans-serif" font-size="11" fill="#0FBF7F">สำรองจ่าย</text>
+
+    <!-- Avatar 2: Mint -->
+    <rect x="180" y="36" width="160" height="60" rx="14" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <circle cx="212" cy="66" r="18" fill="#FFF1E7"/>
+    <text x="212" y="73" font-size="18" text-anchor="middle">👩‍🎨</text>
+    <text x="240" y="60" font-family="'Prompt', sans-serif" font-size="13" font-weight="700" fill="#0F1729">มิ้นท์</text>
+    <text x="240" y="78" font-family="'Prompt', sans-serif" font-size="11" fill="#FF8A3D">ติดเรา ฿450</text>
+
+    <!-- Avatar 3: Oak -->
+    <rect x="360" y="36" width="160" height="60" rx="14" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <circle cx="392" cy="66" r="18" fill="#E4F8F1"/>
+    <text x="392" y="73" font-size="18" text-anchor="middle">🧑‍💼</text>
+    <text x="420" y="60" font-family="'Prompt', sans-serif" font-size="13" font-weight="700" fill="#0F1729">โอ๊ค</text>
+    <text x="420" y="78" font-family="'Prompt', sans-serif" font-size="11" fill="#0FBF7F">ติดเรา ฿280</text>
+
+    <!-- Avatar 4: Fern -->
+    <rect x="540" y="36" width="160" height="60" rx="14" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <circle cx="572" cy="66" r="18" fill="#FDF2F8"/>
+    <text x="572" y="73" font-size="18" text-anchor="middle">👩‍🔬</text>
+    <text x="600" y="60" font-family="'Prompt', sans-serif" font-size="13" font-weight="700" fill="#0F1729">เฟิร์น</text>
+    <text x="600" y="78" font-family="'Prompt', sans-serif" font-size="11" fill="#E5484D">เราติด ฿510</text>
+  </g>
+
+  <!-- SECTION 4: Audio Waveform Component -->
+  <g id="SectionAudio" transform="translate(40, 560)">
+    <text x="0" y="20" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#0F1729">4. Audio Waveform Player Component</text>
+
+    <rect x="0" y="36" width="760" height="84" rx="20" fill="#0F1729"/>
+    <circle cx="48" cy="78" r="22" fill="#EC4899"/>
+    <polygon points="44,70 44,86 58,78" fill="#FFFFFF"/>
+
+    <!-- Waveform Bars -->
+    <g transform="translate(90, 62)">
+      <rect x="0" y="10" width="5" height="12" rx="2.5" fill="#EC4899"/>
+      <rect x="10" y="4" width="5" height="24" rx="2.5" fill="#EC4899"/>
+      <rect x="20" y="0" width="5" height="32" rx="2.5" fill="#EC4899"/>
+      <rect x="30" y="8" width="5" height="16" rx="2.5" fill="#EC4899"/>
+      <rect x="40" y="2" width="5" height="28" rx="2.5" fill="#EC4899"/>
+      <rect x="50" y="6" width="5" height="20" rx="2.5" fill="#EC4899"/>
+      <rect x="60" y="0" width="5" height="32" rx="2.5" fill="#EC4899"/>
+      <rect x="70" y="10" width="5" height="12" rx="2.5" fill="#64748B"/>
+      <rect x="80" y="4" width="5" height="24" rx="2.5" fill="#64748B"/>
+      <rect x="90" y="2" width="5" height="28" rx="2.5" fill="#64748B"/>
+      <rect x="100" y="8" width="5" height="16" rx="2.5" fill="#64748B"/>
+      <rect x="110" y="0" width="5" height="32" rx="2.5" fill="#64748B"/>
+      <rect x="120" y="6" width="5" height="20" rx="2.5" fill="#64748B"/>
+      <rect x="130" y="4" width="5" height="24" rx="2.5" fill="#64748B"/>
+      <rect x="140" y="10" width="5" height="12" rx="2.5" fill="#64748B"/>
+      <rect x="150" y="2" width="5" height="28" rx="2.5" fill="#64748B"/>
+      <rect x="160" y="0" width="5" height="32" rx="2.5" fill="#64748B"/>
+      <rect x="170" y="8" width="5" height="16" rx="2.5" fill="#64748B"/>
+      <rect x="180" y="4" width="5" height="24" rx="2.5" fill="#64748B"/>
+      <rect x="190" y="10" width="5" height="12" rx="2.5" fill="#64748B"/>
+      <rect x="200" y="0" width="5" height="32" rx="2.5" fill="#64748B"/>
+      <rect x="210" y="6" width="5" height="20" rx="2.5" fill="#64748B"/>
+      <rect x="220" y="4" width="5" height="24" rx="2.5" fill="#64748B"/>
+      <rect x="230" y="8" width="5" height="16" rx="2.5" fill="#64748B"/>
+      <rect x="240" y="2" width="5" height="28" rx="2.5" fill="#64748B"/>
+      <rect x="250" y="0" width="5" height="32" rx="2.5" fill="#64748B"/>
+    </g>
+
+    <text x="420" y="82" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" fill="#F8FAFC">0:04 / 0:12</text>
+    <rect x="560" y="60" width="180" height="36" rx="10" fill="#1E293B"/>
+    <text x="650" y="82" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#38BDF8" text-anchor="middle">Voice Persona: น้องนุ่ม 😊</text>
+  </g>
+
+  <!-- SECTION 5: Form Inputs & Segmentation -->
+  <g id="SectionInputs" transform="translate(40, 710)">
+    <text x="0" y="20" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#0F1729">5. Form Inputs & Segmented Controls</text>
+
+    <!-- Text Input -->
+    <rect x="0" y="36" width="360" height="46" rx="12" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="16" y="64" font-family="'Prompt', sans-serif" font-size="14" fill="#0F1729">ราเมงฮาจิบัง สยามพารากอน</text>
+
+    <!-- Segmented Control -->
+    <rect x="400" y="36" width="360" height="46" rx="14" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <rect x="404" y="40" width="176" height="38" rx="11" fill="#2D6BFF"/>
+    <text x="492" y="64" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">หารเท่ากัน</text>
+    <text x="670" y="64" font-family="'Prompt', sans-serif" font-size="13" font-weight="500" fill="#4B5563" text-anchor="middle">หารตามจริง</text>
+  </g>
+
+  <!-- SECTION 6: Color Tokens Palette Swatches -->
+  <g id="SectionColors" transform="translate(40, 830)">
+    <text x="0" y="20" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#0F1729">6. Color Palette Swatches</text>
+
+    <rect x="0" y="36" width="90" height="50" rx="10" fill="#2D6BFF"/>
+    <text x="45" y="70" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">#2D6BFF</text>
+
+    <rect x="100" y="36" width="90" height="50" rx="10" fill="#EC4899"/>
+    <text x="145" y="70" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">#EC4899</text>
+
+    <rect x="200" y="36" width="90" height="50" rx="10" fill="#0FBF7F"/>
+    <text x="245" y="70" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">#0FBF7F</text>
+
+    <rect x="300" y="36" width="90" height="50" rx="10" fill="#FF8A3D"/>
+    <text x="345" y="70" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">#FF8A3D</text>
+
+    <rect x="400" y="36" width="90" height="50" rx="10" fill="#E5484D"/>
+    <text x="445" y="70" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">#E5484D</text>
+
+    <rect x="500" y="36" width="90" height="50" rx="10" fill="#0F1729"/>
+    <text x="545" y="70" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">#0F1729</text>
+
+    <rect x="600" y="36" width="90" height="50" rx="10" fill="#F5F7FA" stroke="#CBD5E1"/>
+    <text x="645" y="70" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#0F1729" text-anchor="middle">#F5F7FA</text>
+  </g>
+</svg>

@@ -1,0 +1,94 @@
+{
+  "name": "SplitBill Design Tokens",
+  "version": "1.0.0",
+  "description": "Figma Design Tokens for SplitBill - Smart Bill Splitting & AI Voice Nudge App",
+  "color": {
+    "primary": {
+      "default": { "value": "#2D6BFF", "type": "color", "description": "Primary Brand Blue" },
+      "soft": { "value": "#EAF0FF", "type": "color", "description": "Primary Tint Background" },
+      "dark": { "value": "#1E4FD9", "type": "color", "description": "Primary Active Pressed" }
+    },
+    "secondary": {
+      "pink": { "value": "#EC4899", "type": "color", "description": "AI & Voice Accent Pink" },
+      "pinkSoft": { "value": "#FDF2F8", "type": "color", "description": "AI Tint Background" }
+    },
+    "semantic": {
+      "success": { "value": "#0FBF7F", "type": "color", "description": "เขาติดเรา — ยอดรับคืน (Green)" },
+      "successSoft": { "value": "#E4F8F1", "type": "color", "description": "Success Badge Tint" },
+      "warn": { "value": "#FF8A3D", "type": "color", "description": "เราติดเขา — ยอดต้องจ่าย (Orange/Amber)" },
+      "warnSoft": { "value": "#FFF1E7", "type": "color", "description": "Warn Badge Tint" },
+      "danger": { "value": "#E5484D", "type": "color", "description": "ยกเลิก / ลบข้อมูล (Red)" },
+      "dangerSoft": { "value": "#FEE2E2", "type": "color", "description": "Danger Tint" }
+    },
+    "neutral": {
+      "ink": { "value": "#0F1729", "type": "color", "description": "Primary Headings & Text" },
+      "ink2": { "value": "#4B5563", "type": "color", "description": "Body Text & Subtitles" },
+      "ink3": { "value": "#9AA3B2", "type": "color", "description": "Muted Captions & Placeholders" },
+      "bg": { "value": "#F5F7FA", "type": "color", "description": "App Background Scaffold" },
+      "card": { "value": "#FFFFFF", "type": "color", "description": "Surface Card White" },
+      "line": { "value": "#EDF0F5", "type": "color", "description": "Divider & Card Border" }
+    },
+    "dark": {
+      "bg": { "value": "#0B0F1A", "type": "color" },
+      "card": { "value": "#151A26", "type": "color" },
+      "line": { "value": "#232A3A", "type": "color" },
+      "ink": { "value": "#F9FAFB", "type": "color" },
+      "ink2": { "value": "#9CA3AF", "type": "color" }
+    }
+  },
+  "borderRadius": {
+    "sm": { "value": "10px", "type": "borderRadius" },
+    "md": { "value": "16px", "type": "borderRadius" },
+    "lg": { "value": "20px", "type": "borderRadius" },
+    "xl": { "value": "24px", "type": "borderRadius" },
+    "full": { "value": "9999px", "type": "borderRadius" }
+  },
+  "spacing": {
+    "xs": { "value": "4px", "type": "spacing" },
+    "sm": { "value": "8px", "type": "spacing" },
+    "md": { "value": "12px", "type": "spacing" },
+    "lg": { "value": "16px", "type": "spacing" },
+    "xl": { "value": "20px", "type": "spacing" },
+    "2xl": { "value": "24px", "type": "spacing" },
+    "3xl": { "value": "32px", "type": "spacing" }
+  },
+  "typography": {
+    "fontFamilies": {
+      "heading": { "value": "Kanit", "type": "fontFamilies" },
+      "body": { "value": "Prompt", "type": "fontFamilies" },
+      "mono": { "value": "JetBrains Mono", "type": "fontFamilies" }
+    },
+    "fontSize": {
+      "xs": { "value": "10px", "type": "fontSizes" },
+      "sm": { "value": "12px", "type": "fontSizes" },
+      "base": { "value": "14px", "type": "fontSizes" },
+      "md": { "value": "16px", "type": "fontSizes" },
+      "lg": { "value": "18px", "type": "fontSizes" },
+      "xl": { "value": "22px", "type": "fontSizes" },
+      "2xl": { "value": "28px", "type": "fontSizes" },
+      "3xl": { "value": "34px", "type": "fontSizes" }
+    }
+  },
+  "elevation": {
+    "card": {
+      "type": "boxShadow",
+      "value": {
+        "x": "0",
+        "y": "2px",
+        "blur": "8px",
+        "spread": "0",
+        "color": "rgba(15, 23, 41, 0.06)"
+      }
+    },
+    "modal": {
+      "type": "boxShadow",
+      "value": {
+        "x": "0",
+        "y": "-8px",
+        "blur": "24px",
+        "spread": "0",
+        "color": "rgba(15, 23, 41, 0.20)"
+      }
+    }
+  }
+}

@@ -1,0 +1,116 @@
+<svg width="393" height="852" viewBox="0 0 393 852" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow-s3" x="-4" y="0" width="401" height="860" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F1729" flood-opacity="0.06"/>
+    </filter>
+    <linearGradient id="btn-grad-s3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D6BFF"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="393" height="852" rx="44" fill="#F5F7FA"/>
+
+  <!-- Status Bar -->
+  <rect x="131" y="11" width="131" height="35" rx="17.5" fill="#000000"/>
+  <text x="36" y="34" font-family="'Prompt', sans-serif" font-size="15" font-weight="600" fill="#0F1729">9:41</text>
+  <path d="M340 24h18v10h-18z" rx="3" stroke="#0F1729" stroke-width="2" fill="none"/>
+  <rect x="342" y="26" width="12" height="6" rx="1.5" fill="#0F1729"/>
+  <path d="M359 27v4" stroke="#0F1729" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- App Bar -->
+  <g id="AppBar">
+    <rect x="20" y="60" width="40" height="40" rx="12" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <path d="M43 75l-5 5 5 5" stroke="#0F1729" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="196" y="86" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#0F1729" text-anchor="middle">วิธีหารบิล</text>
+  </g>
+
+  <!-- Segmented Control: Equal vs Exact -->
+  <g id="ModeSelector" filter="url(#shadow-s3)">
+    <rect x="20" y="116" width="353" height="52" rx="16" fill="#FFFFFF" stroke="#EDF0F5"/>
+    
+    <!-- Active Segment: หารเท่ากัน -->
+    <rect x="24" y="120" width="172" height="44" rx="13" fill="#2D6BFF"/>
+    <text x="110" y="147" font-family="'Prompt', sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">🥧 หารเท่ากัน</text>
+
+    <!-- Inactive Segment: หารตามจริง -->
+    <text x="286" y="147" font-family="'Prompt', sans-serif" font-size="14" font-weight="500" fill="#4B5563" text-anchor="middle">📋 หารตามจริง</text>
+  </g>
+
+  <!-- Member Selection Section -->
+  <text x="24" y="200" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#0F1729">เลือกเพื่อนที่ร่วมหาร (4 คน)</text>
+  
+  <g id="MemberChips">
+    <!-- Member 1: Pop -->
+    <rect x="20" y="214" width="76" height="88" rx="18" fill="#EAF0FF" stroke="#2D6BFF" stroke-width="1.5"/>
+    <circle cx="58" cy="244" r="20" fill="#FFFFFF"/>
+    <text x="58" y="251" font-size="20" text-anchor="middle">👨‍💻</text>
+    <text x="58" y="286" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#2D6BFF" text-anchor="middle">ป๊อป</text>
+
+    <!-- Member 2: Mint -->
+    <rect x="104" y="214" width="76" height="88" rx="18" fill="#EAF0FF" stroke="#2D6BFF" stroke-width="1.5"/>
+    <circle cx="142" cy="244" r="20" fill="#FFFFFF"/>
+    <text x="142" y="251" font-size="20" text-anchor="middle">👩‍🎨</text>
+    <text x="142" y="286" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#2D6BFF" text-anchor="middle">มิ้นท์</text>
+
+    <!-- Member 3: Oak -->
+    <rect x="188" y="214" width="76" height="88" rx="18" fill="#EAF0FF" stroke="#2D6BFF" stroke-width="1.5"/>
+    <circle cx="226" cy="244" r="20" fill="#FFFFFF"/>
+    <text x="226" y="251" font-size="20" text-anchor="middle">🧑‍💼</text>
+    <text x="226" y="286" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#2D6BFF" text-anchor="middle">โอ๊ค</text>
+
+    <!-- Member 4: Fern -->
+    <rect x="272" y="214" width="76" height="88" rx="18" fill="#EAF0FF" stroke="#2D6BFF" stroke-width="1.5"/>
+    <circle cx="310" cy="244" r="20" fill="#FFFFFF"/>
+    <text x="310" y="251" font-size="20" text-anchor="middle">👩‍🔬</text>
+    <text x="310" y="286" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#2D6BFF" text-anchor="middle">เฟิร์น</text>
+  </g>
+
+  <!-- Add Member Button -->
+  <rect x="20" y="312" width="353" height="38" rx="12" fill="#FFFFFF" stroke="#EDF0F5" stroke-dasharray="4 4"/>
+  <text x="196" y="336" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#2D6BFF" text-anchor="middle">+ เพิ่มเพื่อนคนอื่นเข้าบิลนี้</text>
+
+  <!-- Equal Share Estimation Highlight Box -->
+  <g id="EstimateBox" filter="url(#shadow-s3)">
+    <rect x="20" y="366" width="353" height="110" rx="20" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <circle cx="58" cy="421" r="24" fill="#E4F8F1"/>
+    <text x="58" y="429" font-size="24" text-anchor="middle">💰</text>
+    <text x="96" y="408" font-family="'Prompt', sans-serif" font-size="12" fill="#9AA3B2">หารเฉลี่ยเท่ากันคนละ</text>
+    <text x="96" y="438" font-family="'Kanit', sans-serif" font-size="28" font-weight="800" fill="#0FBF7F">฿173.24</text>
+    <text x="96" y="458" font-family="'Prompt', sans-serif" font-size="11" fill="#4B5563">ยอดรวม ฿692.95 ÷ 4 คน</text>
+  </g>
+
+  <!-- Penny Rounding Options Header -->
+  <text x="24" y="504" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#0F1729">กลยุทธ์การปัดเศษสตางค์ (Penny Rounding)</text>
+
+  <!-- Rounding Options Group -->
+  <g id="RoundingOptions" filter="url(#shadow-s3)">
+    <rect x="20" y="518" width="353" height="196" rx="20" fill="#FFFFFF" stroke="#EDF0F5"/>
+    
+    <!-- Option 1: Payer Absorbs (Selected) -->
+    <rect x="36" y="534" width="20" height="20" rx="6" fill="#2D6BFF"/>
+    <path d="M41 544l3 3 6-6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="66" y="549" font-family="'Prompt', sans-serif" font-size="14" font-weight="600" fill="#0F1729">คนสำรองจ่ายรับผิดชอบเศษ (แนะนำ)</text>
+    <text x="66" y="567" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2">เพื่อนจ่าย ฿173.24 ป๊อปจ่าย ฿173.23 (ลด 1 สตางค์)</text>
+    <line x1="36" y1="582" x2="357" y2="582" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- Option 2: Distribute Evenly -->
+    <circle cx="46" cy="610" r="10" stroke="#CBD5E1" stroke-width="2" fill="none"/>
+    <text x="66" y="612" font-family="'Prompt', sans-serif" font-size="14" font-weight="500" fill="#0F1729">กระจายเศษให้คนแรก ๆ</text>
+    <text x="66" y="630" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2">มิ้นท์จ่าย ฿173.25 คนที่เหลือจ่าย ฿173.24</text>
+    <line x1="36" y1="646" x2="357" y2="646" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- Option 3: Round to Baht -->
+    <circle cx="46" cy="674" r="10" stroke="#CBD5E1" stroke-width="2" fill="none"/>
+    <text x="66" y="676" font-family="'Prompt', sans-serif" font-size="14" font-weight="500" fill="#0F1729">ปัดเป็นจำนวนเต็มบาท (Round to Baht)</text>
+    <text x="66" y="694" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2">ทุกคนจ่ายคนละ ฿173.00 ถ้วน (เศษสะสม)</text>
+  </g>
+
+  <!-- Bottom CTA Bar -->
+  <g id="BottomAction">
+    <rect x="0" y="734" width="393" height="118" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <rect x="20" y="750" width="353" height="52" rx="16" fill="url(#btn-grad-s3)"/>
+    <text x="196" y="782" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">สรุปยอดบิลและแชร์ ➔</text>
+    <rect x="129" y="838" width="135" height="5" rx="2.5" fill="#0F1729"/>
+  </g>
+</svg>

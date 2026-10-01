@@ -1,0 +1,126 @@
+<svg width="393" height="852" viewBox="0 0 393 852" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow-s5" x="-4" y="0" width="401" height="860" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F1729" flood-opacity="0.06"/>
+    </filter>
+    <linearGradient id="btn-success-s5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0FBF7F"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="393" height="852" rx="44" fill="#F5F7FA"/>
+
+  <!-- Status Bar -->
+  <rect x="131" y="11" width="131" height="35" rx="17.5" fill="#000000"/>
+  <text x="36" y="34" font-family="'Prompt', sans-serif" font-size="15" font-weight="600" fill="#0F1729">9:41</text>
+  <path d="M340 24h18v10h-18z" rx="3" stroke="#0F1729" stroke-width="2" fill="none"/>
+  <rect x="342" y="26" width="12" height="6" rx="1.5" fill="#0F1729"/>
+  <path d="M359 27v4" stroke="#0F1729" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- App Bar -->
+  <g id="AppBar">
+    <rect x="20" y="60" width="40" height="40" rx="12" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <path d="M43 75l-5 5 5 5" stroke="#0F1729" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="196" y="86" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#0F1729" text-anchor="middle">ชำระเงินด้วย PromptPay</text>
+  </g>
+
+  <!-- Amount & Recipient Banner -->
+  <g id="AmountCard" filter="url(#shadow-s5)">
+    <rect x="20" y="114" width="353" height="116" rx="20" fill="#FFFFFF" stroke="#EDF0F5"/>
+    
+    <circle cx="56" cy="154" r="22" fill="#EAF0FF"/>
+    <text x="56" y="162" font-size="22" text-anchor="middle">👨‍💻</text>
+
+    <text x="88" y="146" font-family="'Prompt', sans-serif" font-size="12" fill="#9AA3B2">โอนเงินให้เจ้าหนี้</text>
+    <text x="88" y="168" font-family="'Prompt', sans-serif" font-size="16" font-weight="700" fill="#0F1729">ป๊อป (Pop Tech)</text>
+
+    <rect x="250" y="136" width="108" height="32" rx="8" fill="#F8FAFC" stroke="#E2E8F0"/>
+    <text x="290" y="157" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#2D6BFF" text-anchor="middle">081-234-5678</text>
+    <path d="M344 148h-6v8h6v-8zm-8 2h-2v8h6v-2" stroke="#2D6BFF" stroke-width="1.5" fill="none"/>
+
+    <line x1="36" y1="184" x2="357" y2="184" stroke="#F1F5F9" stroke-width="1"/>
+    <text x="38" y="210" font-family="'Prompt', sans-serif" font-size="12" fill="#4B5563">ยอดที่ต้องโอนสุทธิ</text>
+    <text x="355" y="212" font-family="'Kanit', sans-serif" font-size="24" font-weight="800" fill="#0FBF7F" text-anchor="end">฿173.24</text>
+  </g>
+
+  <!-- PromptPay QR Code Card -->
+  <g id="QrContainer" filter="url(#shadow-s5)">
+    <rect x="20" y="244" width="353" height="318" rx="22" fill="#FFFFFF" stroke="#EDF0F5"/>
+    
+    <!-- Thai PromptPay Official Banner -->
+    <rect x="20" y="244" width="353" height="42" rx="22" fill="#003D6B"/>
+    <rect x="20" y="264" width="353" height="22" fill="#003D6B"/>
+    <text x="196" y="271" font-family="'Prompt', sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">พร้อมเพย์ PROMPTPAY</text>
+
+    <!-- QR Code Graphic Mockup -->
+    <rect x="96" y="300" width="200" height="200" rx="14" fill="#FFFFFF" stroke="#0F1729" stroke-width="3"/>
+    
+    <!-- Corner Finder Patterns -->
+    <rect x="110" y="314" width="40" height="40" fill="#0F1729"/>
+    <rect x="118" y="322" width="24" height="24" fill="#FFFFFF"/>
+    <rect x="124" y="328" width="12" height="12" fill="#0F1729"/>
+
+    <rect x="242" y="314" width="40" height="40" fill="#0F1729"/>
+    <rect x="250" y="322" width="24" height="24" fill="#FFFFFF"/>
+    <rect x="256" y="328" width="12" height="12" fill="#0F1729"/>
+
+    <rect x="110" y="446" width="40" height="40" fill="#0F1729"/>
+    <rect x="118" y="454" width="24" height="24" fill="#FFFFFF"/>
+    <rect x="124" y="460" width="12" height="12" fill="#0F1729"/>
+
+    <!-- Simulated Data Matrix Blocks -->
+    <rect x="160" y="320" width="12" height="12" fill="#0F1729"/>
+    <rect x="180" y="335" width="20" height="12" fill="#0F1729"/>
+    <rect x="210" y="320" width="14" height="20" fill="#0F1729"/>
+    <rect x="165" y="360" width="60" height="60" rx="4" fill="#2D6BFF"/>
+    <text x="195" y="396" font-size="20" text-anchor="middle">💸</text>
+    <rect x="130" y="380" width="16" height="30" fill="#0F1729"/>
+    <rect x="240" y="380" width="30" height="18" fill="#0F1729"/>
+    <rect x="170" y="440" width="24" height="16" fill="#0F1729"/>
+    <rect x="210" y="450" width="40" height="18" fill="#0F1729"/>
+
+    <!-- Save QR Action -->
+    <rect x="96" y="512" width="200" height="36" rx="10" fill="#EAF0FF"/>
+    <text x="196" y="535" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#2D6BFF" text-anchor="middle">💾 บันทึกภาพ QR Code ลงเครื่อง</text>
+  </g>
+
+  <!-- Bank Deep Link Buttons -->
+  <text x="24" y="582" font-family="'Kanit', sans-serif" font-size="14" font-weight="700" fill="#0F1729">เปิดแอปธนาคารเพื่อโอน</text>
+  <g id="BankLinks">
+    <!-- K PLUS -->
+    <rect x="20" y="594" width="82" height="42" rx="12" fill="#138F2D"/>
+    <text x="61" y="620" font-family="'Kanit', sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">K PLUS</text>
+
+    <!-- SCB Easy -->
+    <rect x="110" y="594" width="82" height="42" rx="12" fill="#4E2A84"/>
+    <text x="151" y="620" font-family="'Kanit', sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">SCB Easy</text>
+
+    <!-- ttb -->
+    <rect x="201" y="594" width="82" height="42" rx="12" fill="#002D62"/>
+    <text x="242" y="620" font-family="'Kanit', sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">ttb touch</text>
+
+    <!-- KMA -->
+    <rect x="291" y="594" width="82" height="42" rx="12" fill="#8A704C"/>
+    <text x="332" y="620" font-family="'Kanit', sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">KMA</text>
+  </g>
+
+  <!-- Slip Upload Card -->
+  <g id="SlipCard" filter="url(#shadow-s5)">
+    <rect x="20" y="648" width="353" height="72" rx="16" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <circle cx="52" cy="684" r="18" fill="#F8FAFC"/>
+    <path d="M47 689h10l-3-4-2 3-2-2-3 3z" stroke="#2D6BFF" stroke-width="1.5" fill="#EAF0FF"/>
+    <text x="80" y="678" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#0F1729">แนบสลิปหลักฐานการโอนเงิน</text>
+    <text x="80" y="696" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2">กดเพื่อเลือกรูปภาพจากอัลบั้มรูปในเครื่อง</text>
+    <rect x="298" y="666" width="60" height="34" rx="8" fill="#EAF0FF"/>
+    <text x="328" y="688" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#2D6BFF" text-anchor="middle">+ แนบ</text>
+  </g>
+
+  <!-- Bottom CTA Bar -->
+  <g id="BottomAction">
+    <rect x="0" y="734" width="393" height="118" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <rect x="20" y="750" width="353" height="52" rx="16" fill="url(#btn-success-s5)"/>
+    <text x="196" y="782" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">✓ แจ้งว่าโอนเงินเรียบร้อยแล้ว</text>
+    <rect x="129" y="838" width="135" height="5" rx="2.5" fill="#0F1729"/>
+  </g>
+</svg>

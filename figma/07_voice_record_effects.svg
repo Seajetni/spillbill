@@ -1,0 +1,159 @@
+<svg width="393" height="852" viewBox="0 0 393 852" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow-s7" x="-4" y="0" width="401" height="860" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F1729" flood-opacity="0.06"/>
+    </filter>
+    <linearGradient id="rec-btn-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5484D"/>
+      <stop offset="100%" stop-color="#F43F5E"/>
+    </linearGradient>
+    <linearGradient id="confirm-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D6BFF"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="393" height="852" rx="44" fill="#F5F7FA"/>
+
+  <!-- Status Bar -->
+  <rect x="131" y="11" width="131" height="35" rx="17.5" fill="#000000"/>
+  <text x="36" y="34" font-family="'Prompt', sans-serif" font-size="15" font-weight="600" fill="#0F1729">9:41</text>
+  <path d="M340 24h18v10h-18z" rx="3" stroke="#0F1729" stroke-width="2" fill="none"/>
+  <rect x="342" y="26" width="12" height="6" rx="1.5" fill="#0F1729"/>
+  <path d="M359 27v4" stroke="#0F1729" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- App Bar -->
+  <g id="AppBar">
+    <rect x="20" y="60" width="40" height="40" rx="12" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <path d="M43 75l-5 5 5 5" stroke="#0F1729" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="196" y="86" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#0F1729" text-anchor="middle">อัดเสียงทวงด้วยตัวเอง</text>
+  </g>
+
+  <!-- Big Recording Studio Stage -->
+  <g id="RecordingStage" filter="url(#shadow-s7)">
+    <rect x="20" y="116" width="353" height="320" rx="24" fill="#0F1729"/>
+    
+    <!-- Pulse Ring 2 -->
+    <circle cx="196" cy="220" r="74" fill="#E5484D" fill-opacity="0.12"/>
+    <!-- Pulse Ring 1 -->
+    <circle cx="196" cy="220" r="56" fill="#E5484D" fill-opacity="0.25"/>
+
+    <!-- Center Mic Record Button -->
+    <circle cx="196" cy="220" r="42" fill="url(#rec-btn-grad)"/>
+    <!-- Mic Icon -->
+    <path d="M196 205c-3.5 0-6 2.5-6 6v14c0 3.5 2.5 6 6 6s6-2.5 6-6v-14c0-3.5-2.5-6-6-6z" fill="#FFFFFF"/>
+    <path d="M184 222c0 6.6 5.4 12 12 12s12-5.4 12-12M196 234v8M189 242h14" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Timer Display -->
+    <text x="196" y="295" font-family="'JetBrains Mono', monospace" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle">00:08</text>
+    <text x="196" y="318" font-family="'Prompt', sans-serif" font-size="12" fill="#94A3B8" text-anchor="middle">แตะปุ่มเพื่อหยุดการบันทึกเสียง (สูงสุด 30 วิ)</text>
+
+    <!-- Real-time Live Waveform -->
+    <g transform="translate(45, 345)">
+      <rect x="0" y="20" width="3" height="20" rx="1.5" fill="#E5484D"/>
+      <rect x="6" y="10" width="3" height="40" rx="1.5" fill="#E5484D"/>
+      <rect x="12" y="2" width="3" height="56" rx="1.5" fill="#E5484D"/>
+      <rect x="18" y="16" width="3" height="28" rx="1.5" fill="#E5484D"/>
+      <rect x="24" y="24" width="3" height="12" rx="1.5" fill="#E5484D"/>
+      <rect x="30" y="8" width="3" height="44" rx="1.5" fill="#E5484D"/>
+      <rect x="36" y="0" width="3" height="60" rx="1.5" fill="#E5484D"/>
+      <rect x="42" y="14" width="3" height="32" rx="1.5" fill="#E5484D"/>
+      <rect x="48" y="22" width="3" height="16" rx="1.5" fill="#E5484D"/>
+      <rect x="54" y="6" width="3" height="48" rx="1.5" fill="#E5484D"/>
+      <rect x="60" y="2" width="3" height="56" rx="1.5" fill="#E5484D"/>
+      <rect x="66" y="18" width="3" height="24" rx="1.5" fill="#E5484D"/>
+      <rect x="72" y="12" width="3" height="36" rx="1.5" fill="#E5484D"/>
+      <rect x="78" y="26" width="3" height="8" rx="1.5" fill="#E5484D"/>
+      <rect x="84" y="14" width="3" height="32" rx="1.5" fill="#E5484D"/>
+      <rect x="90" y="4" width="3" height="52" rx="1.5" fill="#E5484D"/>
+      <rect x="96" y="10" width="3" height="40" rx="1.5" fill="#E5484D"/>
+      <rect x="102" y="20" width="3" height="20" rx="1.5" fill="#E5484D"/>
+      <rect x="108" y="16" width="3" height="28" rx="1.5" fill="#E5484D"/>
+      <rect x="114" y="24" width="3" height="12" rx="1.5" fill="#E5484D"/>
+      <rect x="120" y="8" width="3" height="44" rx="1.5" fill="#E5484D"/>
+      <rect x="126" y="2" width="3" height="56" rx="1.5" fill="#E5484D"/>
+      <rect x="132" y="14" width="3" height="32" rx="1.5" fill="#E5484D"/>
+      <rect x="138" y="20" width="3" height="20" rx="1.5" fill="#E5484D"/>
+      <rect x="144" y="4" width="3" height="52" rx="1.5" fill="#E5484D"/>
+      <rect x="150" y="12" width="3" height="36" rx="1.5" fill="#E5484D"/>
+      <rect x="156" y="24" width="3" height="12" rx="1.5" fill="#E5484D"/>
+      <rect x="162" y="6" width="3" height="48" rx="1.5" fill="#E5484D"/>
+      <rect x="168" y="18" width="3" height="24" rx="1.5" fill="#E5484D"/>
+      <rect x="174" y="2" width="3" height="56" rx="1.5" fill="#E5484D"/>
+      <rect x="180" y="14" width="3" height="32" rx="1.5" fill="#E5484D"/>
+      <rect x="186" y="26" width="3" height="8" rx="1.5" fill="#E5484D"/>
+      <rect x="192" y="10" width="3" height="40" rx="1.5" fill="#E5484D"/>
+      <rect x="198" y="4" width="3" height="52" rx="1.5" fill="#E5484D"/>
+      <rect x="204" y="20" width="3" height="20" rx="1.5" fill="#E5484D"/>
+      <rect x="210" y="16" width="3" height="28" rx="1.5" fill="#E5484D"/>
+      <rect x="216" y="8" width="3" height="44" rx="1.5" fill="#E5484D"/>
+      <rect x="222" y="2" width="3" height="56" rx="1.5" fill="#E5484D"/>
+      <rect x="228" y="14" width="3" height="32" rx="1.5" fill="#E5484D"/>
+      <rect x="234" y="24" width="3" height="12" rx="1.5" fill="#E5484D"/>
+      <rect x="240" y="6" width="3" height="48" rx="1.5" fill="#E5484D"/>
+      <rect x="246" y="12" width="3" height="36" rx="1.5" fill="#E5484D"/>
+      <rect x="252" y="2" width="3" height="56" rx="1.5" fill="#E5484D"/>
+      <rect x="258" y="18" width="3" height="24" rx="1.5" fill="#E5484D"/>
+      <rect x="264" y="22" width="3" height="16" rx="1.5" fill="#E5484D"/>
+      <rect x="270" y="10" width="3" height="40" rx="1.5" fill="#E5484D"/>
+      <rect x="276" y="4" width="3" height="52" rx="1.5" fill="#E5484D"/>
+      <rect x="282" y="16" width="3" height="28" rx="1.5" fill="#E5484D"/>
+      <rect x="288" y="24" width="3" height="12" rx="1.5" fill="#E5484D"/>
+      <rect x="294" y="20" width="3" height="20" rx="1.5" fill="#E5484D"/>
+      <rect x="300" y="26" width="3" height="8" rx="1.5" fill="#E5484D"/>
+    </g>
+  </g>
+
+  <!-- Voice Effects Header -->
+  <text x="24" y="468" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#0F1729">เปลี่ยนเอฟเฟกต์เสียง (Voice FX)</text>
+
+  <!-- Voice Effects Selector Cards -->
+  <g id="FxChips">
+    <!-- FX 1: ปกติ -->
+    <rect x="20" y="482" width="108" height="74" rx="16" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="74" y="512" font-size="20" text-anchor="middle">🎙️</text>
+    <text x="74" y="538" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#0F1729" text-anchor="middle">เสียงปกติ</text>
+
+    <!-- FX 2: ชิพมังก์ (Selected) -->
+    <rect x="142" y="482" width="108" height="74" rx="16" fill="#EAF0FF" stroke="#2D6BFF" stroke-width="2"/>
+    <text x="196" y="512" font-size="20" text-anchor="middle">🐿️</text>
+    <text x="196" y="538" font-family="'Prompt', sans-serif" font-size="12" font-weight="700" fill="#2D6BFF" text-anchor="middle">ชิพมังก์แหลม</text>
+
+    <!-- FX 3: ทุ้มลึก -->
+    <rect x="265" y="482" width="108" height="74" rx="16" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="319" y="512" font-size="20" text-anchor="middle">🦍</text>
+    <text x="319" y="538" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#0F1729" text-anchor="middle">ทุ้มลึกดุดัน</text>
+  </g>
+
+  <g id="FxChipsRow2">
+    <!-- FX 4: วิทยุเก่า -->
+    <rect x="20" y="566" width="170" height="52" rx="14" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="40" y="598" font-size="18">📻</text>
+    <text x="68" y="598" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#0F1729">วิทยุโบราณ</text>
+
+    <!-- FX 5: ห้องโถง -->
+    <rect x="203" y="566" width="170" height="52" rx="14" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <text x="223" y="598" font-size="18">🏛️</text>
+    <text x="251" y="598" font-family="'Prompt', sans-serif" font-size="13" font-weight="600" fill="#0F1729">ห้องโถงก้องสะท้อน</text>
+  </g>
+
+  <!-- Pitch & Speed Slider Mockup -->
+  <g id="PitchSliders" filter="url(#shadow-s7)">
+    <rect x="20" y="632" width="353" height="88" rx="18" fill="#FFFFFF" stroke="#EDF0F5"/>
+    
+    <text x="38" y="658" font-family="'Prompt', sans-serif" font-size="12" fill="#4B5563">ระดับความสูงของเสียง (Pitch: 1.4x)</text>
+    <line x1="38" y1="672" x2="355" y2="672" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+    <line x1="38" y1="672" x2="260" y2="672" stroke="#2D6BFF" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="260" cy="672" r="8" fill="#2D6BFF" stroke="#FFFFFF" stroke-width="2"/>
+
+    <text x="38" y="700" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2">ความเร็วสปีด (Speed): 1.1x เร่งจังหวะให้กวนขึ้น</text>
+  </g>
+
+  <!-- Bottom CTA Bar -->
+  <g id="BottomAction">
+    <rect x="0" y="734" width="393" height="118" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <rect x="20" y="750" width="353" height="52" rx="16" fill="url(#confirm-grad)"/>
+    <text x="196" y="782" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">แชร์เสียงทวงเข้าแชท LINE ➔</text>
+    <rect x="129" y="838" width="135" height="5" rx="2.5" fill="#0F1729"/>
+  </g>
+</svg>

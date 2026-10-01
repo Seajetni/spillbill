@@ -1,4 +1,4 @@
-name: Build Mobile Apps (iOS .ipa & Android .apk)
+name: Build SplitBill Apps (iOS, Android, Windows)
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-mobile:
     name: Build iOS IPA & Android APK
     runs-on: macos-latest
     steps:
@@ -57,3 +57,34 @@ jobs:
         with:
           name: SplitBill-Android-APK
           path: build/app/outputs/flutter-apk/app-release.apk
+
+  build-windows:
+    name: Build Windows 1-Click EXE Installer
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install Inno Setup
+        run: choco install innosetup --no-progress
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Build Windows Application
+        run: flutter build windows --release
+
+      - name: Compile 1-Click Installer (SplitBill_Setup.exe)
+        run: iscc installer.iss
+
+      - name: Upload SplitBill-Windows-Setup.exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: SplitBill-Windows-Setup-EXE
+          path: dist/SplitBill_Setup.exe

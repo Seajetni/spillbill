@@ -1,0 +1,116 @@
+<svg width="393" height="852" viewBox="0 0 393 852" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow-s4" x="-4" y="0" width="401" height="860" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#0F1729" flood-opacity="0.06"/>
+    </filter>
+    <linearGradient id="btn-grad-s4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D6BFF"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="393" height="852" rx="44" fill="#F5F7FA"/>
+
+  <!-- Status Bar -->
+  <rect x="131" y="11" width="131" height="35" rx="17.5" fill="#000000"/>
+  <text x="36" y="34" font-family="'Prompt', sans-serif" font-size="15" font-weight="600" fill="#0F1729">9:41</text>
+  <path d="M340 24h18v10h-18z" rx="3" stroke="#0F1729" stroke-width="2" fill="none"/>
+  <rect x="342" y="26" width="12" height="6" rx="1.5" fill="#0F1729"/>
+  <path d="M359 27v4" stroke="#0F1729" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- App Bar -->
+  <g id="AppBar">
+    <rect x="20" y="60" width="40" height="40" rx="12" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <path d="M43 75l-5 5 5 5" stroke="#0F1729" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="196" y="86" font-family="'Kanit', sans-serif" font-size="18" font-weight="700" fill="#0F1729" text-anchor="middle">สรุปยอดบิล</text>
+    
+    <rect x="333" y="60" width="40" height="40" rx="12" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <!-- Share icon -->
+    <path d="M353 74v8M349 78l4-4 4 4" stroke="#0F1729" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M346 84v2a2 2 0 002 2h10a2 2 0 002-2v-2" stroke="#0F1729" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Receipt Card -->
+  <g id="ReceiptCard" filter="url(#shadow-s4)">
+    <rect x="20" y="116" width="353" height="300" rx="20" fill="#FFFFFF" stroke="#EDF0F5"/>
+    
+    <circle cx="196" cy="148" r="22" fill="#EAF0FF"/>
+    <text x="196" y="156" font-size="22" text-anchor="middle">🍜</text>
+    
+    <text x="196" y="190" font-family="'Kanit', sans-serif" font-size="19" font-weight="700" fill="#0F1729" text-anchor="middle">ราเมงฮาจิบัง สยามพารากอน</text>
+    <text x="196" y="208" font-family="'Prompt', sans-serif" font-size="12" fill="#9AA3B2" text-anchor="middle">บิล #SB-20261002 • 2 ต.ค. 2569</text>
+    
+    <text x="196" y="246" font-family="'Kanit', sans-serif" font-size="34" font-weight="800" fill="#2D6BFF" text-anchor="middle">฿692.95</text>
+    
+    <!-- Dashed Divider -->
+    <line x1="36" y1="264" x2="357" y2="264" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="6 6"/>
+
+    <!-- Cost Breakdown Rows -->
+    <text x="38" y="290" font-family="'Prompt', sans-serif" font-size="12" fill="#4B5563">ค่าอาหารสุทธิ</text>
+    <text x="355" y="290" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#0F1729" text-anchor="end">฿635.00</text>
+
+    <text x="38" y="312" font-family="'Prompt', sans-serif" font-size="12" fill="#E5484D">ส่วนลดสมาชิก</text>
+    <text x="355" y="312" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#E5484D" text-anchor="end">-฿50.00</text>
+
+    <text x="38" y="334" font-family="'Prompt', sans-serif" font-size="12" fill="#4B5563">ภาษี VAT (7%)</text>
+    <text x="355" y="334" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#0F1729" text-anchor="end">+฿44.45</text>
+
+    <text x="38" y="356" font-family="'Prompt', sans-serif" font-size="12" fill="#4B5563">Service Charge (10%)</text>
+    <text x="355" y="356" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#0F1729" text-anchor="end">+฿63.50</text>
+
+    <rect x="36" y="374" width="321" height="30" rx="8" fill="#F8FAFC"/>
+    <text x="50" y="394" font-family="'Prompt', sans-serif" font-size="12" font-weight="600" fill="#4B5563">ผู้สำรองจ่าย: ป๊อป 👨‍💻</text>
+    <text x="345" y="394" font-family="'Prompt', sans-serif" font-size="11" font-weight="600" fill="#0FBF7F" text-anchor="end">โอนเข้า PromptPay</text>
+  </g>
+
+  <!-- Participant Shares Section -->
+  <text x="24" y="440" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#0F1729">ยอดที่แต่ละคนต้องจ่าย</text>
+
+  <!-- Member List -->
+  <g id="Participants" filter="url(#shadow-s4)">
+    <rect x="20" y="454" width="353" height="268" rx="20" fill="#FFFFFF" stroke="#EDF0F5"/>
+    
+    <!-- Member 1: Pop (Payer) -->
+    <circle cx="50" cy="488" r="18" fill="#EAF0FF"/>
+    <text x="50" y="495" font-size="18" text-anchor="middle">👨‍💻</text>
+    <text x="78" y="482" font-family="'Prompt', sans-serif" font-size="14" font-weight="600" fill="#0F1729">ป๊อป (ฉันเอง)</text>
+    <text x="78" y="500" font-family="'Prompt', sans-serif" font-size="11" fill="#9AA3B2">ออกเงินก่อน • ฿173.23</text>
+    <rect x="286" y="474" width="72" height="26" rx="8" fill="#E4F8F1"/>
+    <text x="322" y="491" font-family="'Prompt', sans-serif" font-size="11" font-weight="700" fill="#0FBF7F" text-anchor="middle">จ่ายแล้ว ✓</text>
+    <line x1="36" y1="518" x2="357" y2="518" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- Member 2: Mint -->
+    <circle cx="50" cy="552" r="18" fill="#FFF1E7"/>
+    <text x="50" y="559" font-size="18" text-anchor="middle">👩‍🎨</text>
+    <text x="78" y="546" font-family="'Prompt', sans-serif" font-size="14" font-weight="600" fill="#0F1729">มิ้นท์</text>
+    <text x="78" y="564" font-family="'Prompt', sans-serif" font-size="12" font-weight="700" fill="#FF8A3D">฿173.24</text>
+    <rect x="286" y="538" width="72" height="28" rx="8" fill="#EAF0FF"/>
+    <text x="322" y="556" font-family="'Prompt', sans-serif" font-size="11" font-weight="600" fill="#2D6BFF" text-anchor="middle">🔊 ทวง</text>
+    <line x1="36" y1="582" x2="357" y2="582" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- Member 3: Oak -->
+    <circle cx="50" cy="616" r="18" fill="#FFF1E7"/>
+    <text x="50" y="623" font-size="18" text-anchor="middle">🧑‍💼</text>
+    <text x="78" y="610" font-family="'Prompt', sans-serif" font-size="14" font-weight="600" fill="#0F1729">โอ๊ค</text>
+    <text x="78" y="628" font-family="'Prompt', sans-serif" font-size="12" font-weight="700" fill="#FF8A3D">฿173.24</text>
+    <rect x="286" y="602" width="72" height="28" rx="8" fill="#EAF0FF"/>
+    <text x="322" y="620" font-family="'Prompt', sans-serif" font-size="11" font-weight="600" fill="#2D6BFF" text-anchor="middle">🔊 ทวง</text>
+    <line x1="36" y1="646" x2="357" y2="646" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- Member 4: Fern -->
+    <circle cx="50" cy="680" r="18" fill="#FFF1E7"/>
+    <text x="50" y="687" font-size="18" text-anchor="middle">👩‍🔬</text>
+    <text x="78" y="674" font-family="'Prompt', sans-serif" font-size="14" font-weight="600" fill="#0F1729">เฟิร์น</text>
+    <text x="78" y="692" font-family="'Prompt', sans-serif" font-size="12" font-weight="700" fill="#FF8A3D">฿173.24</text>
+    <rect x="286" y="666" width="72" height="28" rx="8" fill="#EAF0FF"/>
+    <text x="322" y="684" font-family="'Prompt', sans-serif" font-size="11" font-weight="600" fill="#2D6BFF" text-anchor="middle">🔊 ทวง</text>
+  </g>
+
+  <!-- Bottom CTA Bar -->
+  <g id="BottomAction">
+    <rect x="0" y="734" width="393" height="118" fill="#FFFFFF" stroke="#EDF0F5"/>
+    <rect x="20" y="750" width="353" height="52" rx="16" fill="url(#btn-grad-s4)"/>
+    <text x="196" y="782" font-family="'Kanit', sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">✨ ส่งเสียงทวง AI ให้เพื่อนทุกคน</text>
+    <rect x="129" y="838" width="135" height="5" rx="2.5" fill="#0F1729"/>
+  </g>
+</svg>
