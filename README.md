@@ -136,48 +136,5 @@
 * [ ] เปลี่ยน Bundle Identifier จาก `com.splitbill.splitBill` ใน Xcode project เป็น Domain ของผู้พัฒนา
 * [ ] ออกแบบ App Icon (1024x1024 px ไม่มี Alpha) และรัน `flutter_launcher_icons`
 
----
 
-## 🍎 ข้อกำหนดสำหรับฝั่ง iOS & App Store
-
-| รายการ | รายละเอียดที่ต้องเตรียม |
-| :--- | :--- |
-| **Apple Developer Account** | บัญชีรายปี $99 USD/ปี ของ Apple |
-| **Bundle Identifier** | เปลี่ยนจาก `com.splitbill.splitBill` ใน `project.pbxproj` เป็น Reverse Domain จริงของผู้พัฒนา |
-| **App Icon** | สร้างไฟล์ 1024x1024 px (**ห้ามมี Transparency/Alpha**) และรัน `flutter_launcher_icons` |
-| **Permissions (`Info.plist`)** | เพิ่มคำอธิบายการใช้งาน: `NSCameraUsageDescription`, `NSPhotoLibraryUsageDescription`, `NSMicrophoneUsageDescription` |
-| **Export Compliance** | เพิ่ม `<key>ITSAppUsesNonExemptEncryption</key><false/>` ใน `ios/Runner/Info.plist` |
-| **Legal URLs** | ต้องมีหน้าเว็บสำหรับ **Privacy Policy URL** และ **Support URL** ที่เปิดดูได้จริง |
-| **Hardware ในการ Build** | ต้องมีเครื่อง **macOS + Xcode** หรือใช้ **Cloud CI/CD** (เช่น Codemagic หรือ GitHub Actions) เนื่องจาก Windows ไม่สามารถ Build ไฟล์ `.ipa` สำหรับ App Store ได้โดยตรง |
-
----
-
-## 🚀 คำสั่งเริ่มต้นรันโปรเจกต์ (Development & Build)
-
-### 💻 Windows 1-Click Executable Installer (สร้างไฟล์ติดตั้ง .exe ในคลิกเดียว)
-
-สามารถสร้างไฟล์ตัวติดตั้ง `.exe` แบบ Standalone (ขนาดเพียง ~11.4 MB รวม Flutter Engine และ DLLs ครบถ้วน) ได้ง่ายๆ:
-
-1. **คอมไพล์ใน 1 คลิกผ่าน Batch Script**:
-   ```cmd
-   build_windows_exe.bat
-   ```
-2. **ผลลัพธ์ที่ได้**:
-   - `D:\code\split_bill\SplitBill_Setup.exe` (และในโฟลเดอร์ `dist/`)
-   - ดับเบิ้ลคลิกเพื่อติดตั้งและเปิดใช้งานแอปได้ทันทีใน 1 วินาที พร้อมสร้าง Desktop Shortcut อัตโนมัติ โดยไม่ต้องมีสิทธิ์ Administrator
-
-### 🛠️ Flutter Development Commands
-
-```bash
-# ตรวจสอบการตั้งค่าและแพ็กเกจ
-flutter doctor
-
-# ดาวน์โหลด dependencies
-flutter pub get
-
-# ตรวจสอบความถูกต้องของโค้ด
-flutter analyze
-
-# รันแอปพลิเคชันบน Windows
-flutter run -d windows
 ```
